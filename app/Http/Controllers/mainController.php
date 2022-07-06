@@ -10,4 +10,8 @@ class mainController extends Controller
     {
         return view('vitamin.main');
     }
+    public function firstpage()
+    {
+        return view('vitamin.firstpage');
+    }
 }

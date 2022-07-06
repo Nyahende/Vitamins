@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('/css/vitamin.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -22,10 +23,19 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="{{route('main')}}" class="nav-link">Home</a>
       </li>
+      
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+      <a class="dropdown-item" href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+          {{ __('Logout') }}
+      </a>
+
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          @csrf
+      </form>
       </li>
     </ul>
 
@@ -45,7 +55,6 @@
                   <i class="fas fa-search"></i>
                 </button>
                 <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
                 </button>
               </div>
             </div>
@@ -168,7 +177,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
       </div>
 
@@ -242,12 +251,7 @@
           <div class="col-sm-6">
             <h1>Profile</h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User Profile</li>
-            </ol>
-          </div>
+         
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -262,14 +266,16 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
+                  <a href="editProfilePicture">
                   <img class="profile-user-img img-fluid img-circle"
                        src="{{asset('/dist/img/user4-128x128.jpg')}}"
                        alt="User profile picture">
+                  </a>
                 </div>
 
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
 
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center">{{Auth::user()->occupation}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
@@ -300,212 +306,291 @@
           <div class="col-md-9">
             <div class="card">
               <div class="card-header p-2">
+                <div class="tabs">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Media</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Posts</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">About Me</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#video" data-toggle="tab">Videos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#image" data-toggle="tab">Images</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#posts" data-toggle="tab">Posts</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#about" data-toggle="tab">About Me</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                    <!-- Post -->
+                  <div class="active tab-pane" id="video">
+                  <button type="button" class="btn btn-success" style="margin:10px;" id="add-media-btn" >Add Media</button>
+
+                  <div class="add-media-div" style="display:none">
+                    <form action="{{route('ProfileMediaRoute')}}" method="post" enctype="multipart/form-data">
+                      @csrf
+                      <div class="card-body">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add Caption" name="caption">
+                        </div>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
+                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                              <button type="submit" class="input-group-text" id="upload-media-btn">Upload</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    </div>
+
+                    @foreach($userMedia as $item)
                     <div class="post">
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
                         <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                          <a href="#">{{$item->poster_name}}</a>
                         </span>
-                        <span class="description">Shared publicly - 7:30 PM today</span>
+                        <span class="description">{{$item->caption}}</span>
                       </div>
                       <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
+                      <div class="video-div" style="width:100%;height:auto;"> 
+                      <video controls class="video-controls" style="width:100%;height:auto;">
+                       <source src="{{asset('/assets')}}/{{$item->file}}" type="video/mp4" style="width:100%;height:auto;">Your audio format is not supported</audio>
 
+                      </div>
                       <p>
 
-                        <a href="#" class="link-black text-sm"><i class="fas fa-trash mr-1"></i> Delete</a>
                         <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
+                        <a href="#" class="link-black text-sm mr-2"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                        <a href="{{'deleteVideo/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
+                        
+                        <span class="float-right" id="video-float-right">
+                            <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\videoComment::where('post_id',$item->id)->count();}})
                         </span>
                       </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user7-128x128.jpg')}}" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Sent you a message - 3 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <form class="form-horizontal">
-                        <div class="input-group input-group-sm mb-0">
-                          <input class="form-control form-control-sm" placeholder="Response">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-danger">Send</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user6-128x128.jpg')}}" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Posted 5 photos - 5 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row mb-3" style="width:100%;" >
-                          <img class="img-fluid" src="{{asset('/dist/img/photo1.png')}}" alt="Photo" style="width:100%;height:auto;">
-                      </div>
-                      <!-- /.row -->
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="timeline">
-                    <!-- The timeline -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Shared publicly - 7:30 PM today</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user7-128x128.jpg')}}" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Sent you a message - 3 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <form class="form-horizontal">
-                        <div class="input-group input-group-sm mb-0">
-                          <input class="form-control form-control-sm" placeholder="Response">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-danger">Send</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user6-128x128.jpg')}}" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Posted 5 photos - 5 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row mb-3" style="width:100%;" >
-                          <img class="img-fluid" src="{{asset('/dist/img/photo1.png')}}" alt="Photo" style="width:100%;height:auto;">
-                      </div>
-                      <!-- /.row -->
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                      <div class="videos-comments-div" style="margin-top:20px;display:none;width:100%;height:400px;overflow-y:scroll;">
                     
-                      <!-- END timeline item -->
-                      <div>
-                        <i class="far fa-clock bg-gray"></i>
+                      @foreach($videoComments as $comment)
+
+                         @if($comment->post_id == $item->id)
+
+                            <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                              <span class="username">
+                                <a href="#">{{$comment->sender_name}}</a>
+                              </span>
+                              <span class="description">{{$comment->created_at}}</span>
+                            </div>
+                            <!-- /.user-block -->
+                            <p>
+                            {{$comment->comment_body}} <br>
+                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                            <a href="{{'deleteVideoComment/'.$comment->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
+                            </p>
+                            
+                          @endif
+
+                      @endforeach
                       </div>
+
+                       
+
+                      <form action="{{route('Profilecomment')}}" method="post">
+                        @csrf
+                      <input  type="hidden"  value="{{$item->id}}" name="postId">
+                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
+                      <button type="submit" class="input-group-text" >Send</button>
+
+                      </form>
                     </div>
+                    @endforeach
+
+                    </div>
+
+                  <div class="active tab-pane" id="image">
+                  <button type="button" class="btn btn-success" style="margin:10px;" id="add-image-btn" >Add Image</button>
+
+                  <div class="add-image-div" style="display:none">
+                    <form action="{{route('ProfileImageRoute')}}" method="post" enctype="multipart/form-data">
+                      @csrf
+                      <div class="card-body">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add Caption" name="caption">
+                        </div>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
+                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                              <button type="submit" class="input-group-text" id="upload-media-btn">Upload</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    </div>
+
+                    @foreach($userImage as $item)
+                    <div class="post">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user6-128x128.jpg')}}" alt="User Image">
+                        <span class="username">
+                          <a href="#">{{$item->poster_name}}</a>
+                        </span>
+                        <span class="description">{{$item->caption}}</span>
+                      </div>
+                      <!-- /.user-block -->
+                      <div class="row mb-3" style="width:100%;" >
+                      <img class="img-fluid" src="{{asset('/assets')}}/{{$item->file}}" alt="Photo" style="width:100%;height:auto;">
+
+
+                      </div>
+                      <!-- /.row -->
+
+                      <p>
+                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                        <a href="{{'deleteImage/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
+                        <span class="float-right" id="images-float-right">
+
+                            <i class="far fa-comments mr-1"></i> Comments({{$commentCount = \App\Models\imageComment::where('post_id',$item->id)->count();}})
+                        </span>
+                      </p>
+                      <div class="images-comments-div" style="margin-top:20px;display:none;width:100%;height:400px;overflow-y:scroll;">
+                      @foreach($imageComments as $comment)
+
+                         @if($comment->post_id == $item->id)
+
+                            <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                              <span class="username">
+                                <a href="#">{{$comment->sender_name}}</a>
+                              </span>
+                              <span class="description">{{$comment->created_at}}</span>
+                            </div>
+                            <p>
+                            {{$comment->comment_body}} <br>
+                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                            <a href="{{'deleteImageComment/'.$comment->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
+                            </p>
+
+                            
+                          @endif
+
+                      @endforeach
+                      </div>
+
+                      <form action="{{route('ProfileImageComment')}}" method="post">
+                        @csrf
+                      <input  type="hidden"  value="{{$item->id}}" name="postId">
+                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
+                      <button type="submit" class="input-group-text" >Send</button>
+
+                      </form>
+                    </div>
+
+                    @endforeach
+
+
+                   </div>
+                    <!-- </div> -->
+
+                    <!-- /.post -->
+                  
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="posts">
+                  <button type="button" class="btn btn-success" style="margin:10px;" id="add-post-btn">Add Post</button>
+
+
+                  <div class="add-post-div" style="display:none">
+                      <form action="{{route('ProfilePostRoute')}}" method="post">
+                        @csrf
+                        <div class="card-body">
+                          <div class="form-group">
+                          <textarea class="form-control" rows="3" placeholder="Type Your Post" name="post"></textarea>
+                          </div>
+                          
+                          <div class="form-group">
+                            <div class="input-group">
+                             
+                              <div class="input-group-append">
+                                <button class="input-group-text" id="upload-post-btn">Upload</button>
+                              </div>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </form>
+                  </div>
+                    <!-- The timeline -->
+                   
+
+                    <!-- Post -->
+                    @foreach($userPost as $item)
+                    <div class="post">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                        <span class="username">
+                          <a href="#">{{$item->poster_name}}</a>
+                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                        </span>
+                        <span class="description">{{$item->created_at}}</span>
+                      </div>
+                      <!-- /.user-block -->
+                      <p>
+                        {{$item->post}}
+                      </p>
+
+                      <p>
+                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                        <a href="{{'deletePost/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
+                        <span class="float-right" id="posts-float-right">
+                            <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\postComment::where('post_id',$item->id)->count();}})
+                        </span>
+                      </p>
+                      <div class="posts-comments-div" style="margin-top:20px;display:none;width:100%;height:400px;overflow-y:scroll;">
+                      
+                      @foreach($postComments as $comment)
+
+                         @if($comment->post_id == $item->id)
+
+                            <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                              <span class="username">
+                                <a href="#">{{$comment->sender_name}}</a>
+                              </span>
+                              <span class="description">{{$comment->created_at}}</span>
+                            </div>
+                            <!-- /.user-block -->
+                            <p>
+                            {{$comment->comment_body}} <br>
+                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                            <a href="{{'deletePostComment/'.$comment->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
+
+                            
+                            </p>
+                           
+
+                          @endif
+
+                      @endforeach
+                      </div>
+                      <form action="{{route('ProfilePostComment')}}" method="post">
+                          @csrf
+                        <input  type="hidden"  value="{{$item->id}}" name="postId">
+                        <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
+                        <button type="submit" class="input-group-text" >Send</button>
+
+                      </form>
+                      
+                    </div>
+
+                    @endforeach
                   </div>
                   <!-- /.tab-pane -->
 
-                  <div class="tab-pane" id="settings">
+                  <div class="tab-pane" id="about">
                   <div class="card-header">
                     <h3 class="card-title">About Me</h3>
                   </div>
@@ -514,46 +599,37 @@
                             <strong><i class="fas fa-book mr-1"></i> Education</strong>
 
                             <p class="text-muted">
-                            B.S. in Computer Science from the University of Tennessee at Knoxville
+                            {{Auth::user()->education}}
                             </p>
-                            <a href="#" class="link-black text-sm"><i class="fas fa-edit mr-1"></i> Edit</a>
 
                             <hr>
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-                            <p class="text-muted">Malibu, California</p>
-                            <a href="#" class="link-black text-sm"><i class="fas fa-edit mr-1"></i> Edit</a>
+                            <p class="text-muted">{{Auth::user()->location}}</p>
 
                             <hr>
 
                             <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
 
                             <p class="text-muted">
-                            <span class="tag tag-danger">UI Design</span>
-                            <span class="tag tag-success">Coding</span>
-                            <span class="tag tag-info">Javascript</span>
-                            <span class="tag tag-warning">PHP</span>
-                            <span class="tag tag-primary">Node.js</span>
+                            <span class="tag tag-danger">{{Auth::user()->skills}}</span>
+                            
                             </p>
-                            <a href="#" class="link-black text-sm"><i class="fas fa-edit mr-1"></i> Edit</a>
 
                             <hr>
 
                             <strong><i class="far fa-file-alt mr-1"></i> Hobbies</strong>
 
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                             Etiam fermentum enim neque.</p>
+                            <p class="text-muted">{{Auth::user()->hobbies}}</p>
 
-                             <a href="#" class="link-black text-sm"><i class="fas fa-edit mr-1"></i> Edit</a>
 
                              <hr>
 
                              <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
 
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                             Etiam fermentum enim neque.</p>
-                            <a href="#" class="link-black text-sm"><i class="fas fa-edit mr-1"></i> Edit</a>
+                            <p class="text-muted">{{Auth::user()->notes}}</p>
+                            <a href="editabout/{{$userId}}" class="link-black text-sm"><i class="fas fa-edit mr-1"></i> Edit</a>
 
                         </div>
                         <!-- /.card-body -->
@@ -562,6 +638,7 @@
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
+              </div>
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -597,5 +674,6 @@
 <script src="{{asset('/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
+<script src="{{asset('/js/formslide.js')}}"></script>
 </body>
 </html>

@@ -59,10 +59,10 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
+          <img src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+        </div><br>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
@@ -146,7 +146,7 @@
     <!-- Main content -->
     <section class="content">
 
-    <div class="card">
+           <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Movies Table</h3>
 
@@ -155,18 +155,27 @@
 
               <div class="card card-success" >
                         
-                        <form action="" method="post">
+                        <form action="{{route('AdminMovies')}}" method="post" enctype="multipart/form-data">
                             @csrf
                         <div class="card-body">
                             <div class="row">
                             <div class="col-5">
-                                <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="patientFullName" required autofocus>
+                                <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="movieName" required autofocus>
                             </div>
                             <div class="col-5">
-                                <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="birthplace" required autofocus>
+                                <input type="text" class="form-control" placeholder="DIRECTOR NAME" style="margin:5px" name="directorName" required autofocus>
                             </div>
-                      <button type="button" class="btn  btn-primary btn-sm" id="upload-movie-btn" style="margin:10;">Upload Movie</button>
-        
+                            <div class="col-5">
+                                <input type="text" class="form-control" placeholder="STARING NAME" style="margin:5px" name="staringName" required autofocus>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="form-control" placeholder="RELEASED YEAR" style="margin:5px" name="year" required autofocus>
+                            </div>
+                            <div class="col-5">
+                                <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
+                            </div>
+                      <button type="submit" class="btn  btn-primary btn-sm" id="upload-movie-btn" style="margin:10;">Upload Movie</button>
+                        </form>
                       
                         </div>
               </div>
@@ -181,56 +190,16 @@
                   </tr>
                   </thead>
                   <tbody>
+
+                @foreach($movies as $item)
+
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->created_at}}</td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                 
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    
-                  </tr>
+
+                @endforeach
 
                   </tbody>
                   <tfoot>
@@ -255,18 +224,24 @@
 
                       <div class="card card-success">
                                   
-                          <form action="" method="post">
-                              @csrf
-                          <div class="card-body">
-                              <div class="row">
-                              <div class="col-5">
-                                  <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="patientFullName" required autofocus>
-                              </div>
-                              <div class="col-5">
-                                  <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="birthplace" required autofocus>
-                              </div>
-                        <button type="button" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Trailler</button>
-
+                      <form action="{{route('AdminTrailler')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-5">
+                                <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="traillerName" required autofocus>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="form-control" placeholder="DIRECTOR NAME" style="margin:5px" name="directorName" required autofocus>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="form-control" placeholder="STARING NAME" style="margin:5px" name="staringName" required autofocus>
+                            </div>
+                            <div class="col-5">
+                                <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
+                            </div>
+                      <button type="submit" class="btn  btn-primary btn-sm" id="upload-movie-btn" style="margin:10;">Upload Movie</button>
+                        </form>
                         
                           </div>
                       </div>
@@ -281,56 +256,15 @@
                   </tr>
                   </thead>
                   <tbody>
+                  @foreach($traillers as $item)
+
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->created_at}}</td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                 
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    
-                  </tr>
+
+                @endforeach
 
                   </tbody>
                   <tfoot>
@@ -346,6 +280,69 @@
               <!-- /.card-body -->
             </div>
 
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Events Table</h3>
+
+              </div>
+
+
+              <div class="card card-success" >
+                        
+                        <form action="{{route('AdminEvents')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-5">
+                                <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="eventName" required autofocus>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="form-control" placeholder="HOST NAME" style="margin:5px" name="hostName" required autofocus>
+                            </div>
+                            <div class="col-5">
+                                <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
+                            </div>
+                      <button type="submit" class="btn  btn-primary btn-sm" id="upload-movie-btn" style="margin:10;">Upload Movie</button>
+                        </form>
+                      
+                        </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Video Name</th>
+                    <th>Created_at</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                @foreach($events as $item)
+
+                  <tr>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->created_at}}</td>
+                  </tr>
+
+                @endforeach
+
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>id</th>
+                    <th>Video Name</th>
+                    <th>Created_at</th>
+                    
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Technology Table</h3>

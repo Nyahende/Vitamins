@@ -57,10 +57,10 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
+          <img src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+        </div><br>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
@@ -135,126 +135,124 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12">
- 
-        <div class="card card-primary card-outline">
-         
-          <div class="card-body">
-            <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-traillers" role="tab" aria-controls="custom-content-below-traillers" aria-selected="true" style="font-size:12px;">Traillers</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-fullMovies" role="tab" aria-controls="custom-content-below-fullMovies" aria-selected="false" style="font-size:12px;">Full Movies</a>
-              </li>
-              <li class="nav-item">
-              <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-events" role="tab" aria-controls="custom-content-below-events" aria-selected="false" style="font-size:12px;">Events</a>
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header p-2" >
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#traillers" data-toggle="tab">Traillers</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#movies" data-toggle="tab">Movies</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#events" data-toggle="tab">Events</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
 
-              </li>
-            
-            </ul>
-            <div class="tab-content" id="custom-content-below-traillers">
-              <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
-              <div class="post">
-                      <div class="user-block">
-                        <span class="username">
-                          <a href="#">Furry (2014)</a>
-                        </span>
-                        <span class="description">Director : David Ayer</span>
-                        <span class="description">Starring : Brad Pitt</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row mb-3" style="width:100%;" >
-                      <div class="video-div" style="width:100%;height:auto"> <video controls class="video-controls" style="width:100%;height:auto"> <source src="{{asset('dist/video/Halo.mp4')}}" type="video/mp4">Your audio format is not supported</video>
-                      </div>
-                      </div>
-                      <!-- /.row -->
+                  <div class="active tab-pane" id="traillers">
+                        @foreach($traillers as $traillers)
 
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
 
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                        <div class="post">
+
+
+                              <div class="user-block" style="margin-left:-50px;">
+                                  <span class="username">
+                                    <a href="">{{$traillers->name}}</a>
+                                  </span>
+                                  <span class="description"><b> Director</b>: {{$traillers->director}}</span>
+                                  <span class="description"><b>Staring</b>: {{$traillers->staring}}</span>
+                              </div>
+                                <!-- /.user-block -->
+                                <div class="video-div" style="width:100%;height:auto;"> 
+                                <video controls class="video-controls" style="width:100%;height:auto;">
+                                <source src="{{asset('/assets')}}/{{$traillers->file}}" type="video/mp4" style="width:100%;height:auto;">
+                                Your audio format is not supported</video>
+
+                                </div>
+                                <p>
+
+                                  <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                                  <a href="#" class="link-black text-sm mr-2"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                                
+                                </p>
+                          </div>
+                          @endforeach
+
                     </div>
-              </div>
-              <div class="tab-pane fade" id="custom-content-below-fullMovies" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-              <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
-              <div class="post">
-              <div class="user-block">
-                        <span class="username">
-                          <a href="#">Furry (2014)</a>
-                        </span>
-                        <span class="description">Director : David Ayer</span>
-                        <span class="description">Starring : Brad Pitt</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row mb-3" style="width:100%;" >
-                      <div class="video-div" style="width:100%;height:auto"> <video controls class="video-controls" style="width:100%;height:auto"> <source src="{{asset('dist/video/Halo.mp4')}}" type="video/mp4">Your audio format is not supported</video>
-                      </div>
-                      </div>
-                      <!-- /.row -->
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="movies">
+                  @foreach($movies as $movies)
 
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
 
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                      <div class="post">
+
+
+                            <div class="user-block" style="margin-left:-50px;">
+                                <span class="username">
+                                  <a href="">{{$movies->name}}</a>
+                                </span>
+                                <span class="description"><b> Director</b>: {{$movies->director}}</span>
+                                <span class="description"><b> Staring</b>: {{$movies->staring}}</span>
+                            </div>
+                              <!-- /.user-block -->
+                              <div class="video-div" style="width:100%;height:auto;"> 
+                              <video controls class="video-controls" style="width:100%;height:auto;">
+                              <source src="{{asset('/assets')}}/{{$movies->file}}" type="video/mp4" style="width:100%;height:auto;">
+                              Your audio format is not supported</video>
+
+                              </div>
+                              <p>
+
+                                <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                                <a href="#" class="link-black text-sm mr-2"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                              
+                              </p>
+                        </div>
+                        @endforeach
+
                     </div>
-              </div>
-              
-            
+
+
+                  <div class="tab-pane" id="events">
+                  @foreach($events as $events)
+
+
+                    <div class="post">
+
+
+                          <div class="user-block" style="margin-left:-50px;">
+                              <span class="username">
+                                <a href="">{{$events->name}}</a>
+                              </span>
+                              <span class="description"><b> Event Name</b>: {{$events->name}}</span>
+                              <span class="description"><b> Host</b>: {{$events->host}}</span>
+                          </div>
+                            <!-- /.user-block -->
+                            <div class="video-div" style="width:100%;height:auto;"> 
+                            <video controls class="video-controls" style="width:100%;height:auto;">
+                            <source src="{{asset('/assets')}}/{{$events->file}}" type="video/mp4" style="width:100%;height:auto;">
+                            Your audio format is not supported</video>
+
+                            </div>
+                            <p>
+
+                              <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                              <a href="#" class="link-black text-sm mr-2"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                            
+                            </p>
+                      </div>
+                      @endforeach
+                    
+                  </div>
+               
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
             </div>
-
-            <div class="tab-pane fade" id="custom-content-below-events" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-              <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
-              <div class="post">
-              <div class="user-block">
-                        <span class="username">
-                          <a href="#">Oscar Awards (2014)</a>
-                        </span>
-                        <span class="description">MC : Chriss Rock</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row mb-3" style="width:100%;" >
-                      <div class="video-div" style="width:100%;height:auto"> <video controls class="video-controls" style="width:100%;height:auto"> <source src="{{asset('dist/video/Halo.mp4')}}" type="video/mp4">Your audio format is not supported</video>
-                      </div>
-                      </div>
-                      <!-- /.row -->
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-              </div>
-              
-            
-            </div>
-            
-            
-         
+            <!-- /.card -->
           </div>
-          <!-- /.card -->
-        </div>
+     
         <!-- /.card -->
       </div>
       <!-- /.container-fluid -->

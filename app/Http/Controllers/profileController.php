@@ -129,6 +129,7 @@ class profileController extends Controller
 
         $vComments = new videoComment;
         $vComments -> post_id = $request->postId;
+        $vComments -> sender_picture = $request->profilePicture;
         $vComments -> comment_body = $request->commentBody;
         $vComments -> sender_name = Auth::user()->name;
         
@@ -141,6 +142,7 @@ class profileController extends Controller
 
         $vComments = new imageComment;
         $vComments -> post_id = $request->postId;
+        $vComments -> sender_picture = $request->profilePicture;
         $vComments -> comment_body = $request->commentBody;
         $vComments -> sender_name = Auth::user()->name;
         
@@ -154,6 +156,7 @@ class profileController extends Controller
 
         $pComments = new postComment;
         $pComments -> post_id = $request->postId;
+        $vComments -> sender_picture = $request->profilePicture;
         $pComments -> comment_body = $request->commentBody;
         $pComments -> sender_name = Auth::user()->name;
         

@@ -54,10 +54,10 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
+          <img src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+        </div><br>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
@@ -227,7 +227,7 @@
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" alt="user image">
                         <span class="username">
-                          <a href="#">{{$item->poster_name}}</a>
+                          <a href="{{route('userprofilename',[$item->poster_name])}}">{{$item->poster_name}}</a>
                         </span>
                         <span class="description">{{$item->caption}}</span>
                       </div>
@@ -254,9 +254,9 @@
                          @if($comment->post_id == $item->id)
 
                             <div class="user-block">
-                              <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                              <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
                               <span class="username">
-                                <a href="#">{{$comment->sender_name}}</a>
+                                <a href="{{route('userprofilename',[$comment->sender_name])}}">{{$comment->sender_name}}</a>
                               </span>
                               <span class="description">{{$comment->created_at}}</span>
                             </div>
@@ -277,6 +277,7 @@
                       <form action="{{route('Profilecomment')}}" method="post">
                         @csrf
                       <input  type="hidden"  value="{{$item->id}}" name="postId">
+                      <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="profilePicture">
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                       <button type="submit" class="input-group-text" >Send</button>
 
@@ -317,7 +318,7 @@
                         <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" alt="User Image">
                        
                         <span class="username">
-                          <a href="#">{{$item->poster_name}}</a>
+                          <a href="{{route('userprofilename',[$item->poster_name])}}">{{$item->poster_name}}</a>
                         </span>
                         <span class="description">{{$item->caption}}</span>
                       </div>
@@ -340,9 +341,9 @@
                          @if($comment->post_id == $item->id)
 
                             <div class="user-block">
-                              <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                              <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
                               <span class="username">
-                                <a href="#">{{$comment->sender_name}}</a>
+                                <a href="{{route('userprofilename',[$comment->sender_name])}}">{{$comment->sender_name}}</a>
                               </span>
                               <span class="description">{{$comment->created_at}}</span>
                             </div>
@@ -361,6 +362,7 @@
                       <form action="{{route('ProfileImageComment')}}" method="post">
                         @csrf
                       <input  type="hidden"  value="{{$item->id}}" name="postId">
+                      <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                       <button type="submit" class="input-group-text" >Send</button>
 
@@ -405,11 +407,12 @@
 
                     <!-- Post -->
                     @foreach($userPost as $item)
+
                     <div class="post">
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" alt="user image">
                         <span class="username">
-                          <a href="#">{{$item->poster_name}}</a>
+                          <a href="{{route('userprofilename',[$item->poster_name])}}">{{$item->poster_name}}</a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
                         </span>
                         <span class="description">{{$item->created_at}}</span>
@@ -434,9 +437,9 @@
                          @if($comment->post_id == $item->id)
 
                             <div class="user-block">
-                              <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                              <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
                               <span class="username">
-                                <a href="#">{{$comment->sender_name}}</a>
+                                <a href="{{route('userprofilename',[$comment->sender_name])}}">{{$comment->sender_name}}</a>
                               </span>
                               <span class="description">{{$comment->created_at}}</span>
                             </div>
@@ -457,6 +460,7 @@
                       <form action="{{route('ProfilePostComment')}}" method="post">
                           @csrf
                         <input  type="hidden"  value="{{$item->id}}" name="postId">
+                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
                         <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                         <button type="submit" class="input-group-text" >Send</button>
 

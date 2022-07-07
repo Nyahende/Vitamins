@@ -42,7 +42,7 @@ Route::get('history',[historyController::class,'history'])->name('history');
 Route::get('sports',[sportsController::class,'sports'])->name('sports');
 Route::get('food',[foodController::class,'food'])->name('food');
 Route::get('members',[membersController::class,'members'])->name('members');
-Route::get('userprofile/{name}',[userProfileController::class,'userprofile'])->name('userprofile');
+Route::get('userprofile/{name}',[userProfileController::class,'userprofile'])->name('userprofilename');
 Route::get('editabout/{userId}',[ProfileController::class,'editAboutMe']);
 Route::post('UpdateUser',[ProfileController::class,'UpdateUser'])->name('UpdateUser');
 Route::get('admin',[adminController::class,'admin']);
@@ -59,6 +59,9 @@ Route::post('ProfileComment',[ProfileController::class,'ProfileComment'])->name(
 Route::post('ProfileImageComment',[ProfileController::class,'ProfileImageComment'])->name('ProfileImageComment');
 Route::post('ProfilePostComment',[ProfileController::class,'ProfilePostComment'])->name('ProfilePostComment');
 Route::post('ProfilePictureRoute',[ProfileController::class,'ProfilePictureRoute'])->name('ProfilePictureRoute');
+Route::post('add-movie',[adminController::class,'AdminMovies'])->name('AdminMovies');
+Route::post('add-trailler',[adminController::class,'AdminTraillers'])->name('AdminTrailler');
+Route::post('add-event',[adminController::class,'AdminEvents'])->name('AdminEvents');
 
 });
 

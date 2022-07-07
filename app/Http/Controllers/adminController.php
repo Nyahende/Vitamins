@@ -6,15 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\movie;
 use App\Models\trailler;
 use App\Models\event;
+use App\Models\audio;
+use App\Models\musicVideo;
 
 class adminController extends Controller
 {
     public function admin()
     {
+        $musicVideo = musicVideo::orderBy('id','desc')->get();
+        $audio = audio::orderBy('id','desc')->get();
         $movies = movie::orderBy('id','desc')->get();
         $traillers = trailler::orderBy('id','desc')->get();
         $events = event::orderBy('id','desc')->get();
-        return view('vitamin.admin',compact('movies','traillers','events'));
+        return view('vitamin.admin',compact('movies','traillers','events','audio','musicVideo'));
     }
 
     public function AdminMovies(Request $request)
@@ -31,6 +35,38 @@ class adminController extends Controller
         $movie->file=$filename;
 
         $query = $movie->save();
+
+        return redirect()->back();
+    }
+
+    public function addSong(Request $request)
+    {
+
+        $audio = new audio;
+        $audio -> song_name = $request->audioName;
+        $audio -> artist_name = $request->artistName;
+        $file=$request->file;
+        $filename=time().'.'.$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+        $audio->file=$filename;
+
+        $query = $audio->save();
+
+        return redirect()->back();
+    }
+
+    public function addMusic(Request $request)
+    {
+
+        $audio = new musicVideo;
+        $audio -> song_name = $request->musicName;
+        $audio -> artist_name = $request->artistName;
+        $file=$request->file;
+        $filename=time().'.'.$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+        $audio->file=$filename;
+
+        $query = $audio->save();
 
         return redirect()->back();
     }

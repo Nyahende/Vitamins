@@ -62,6 +62,8 @@ Route::post('ProfilePictureRoute',[ProfileController::class,'ProfilePictureRoute
 Route::post('add-movie',[adminController::class,'AdminMovies'])->name('AdminMovies');
 Route::post('add-trailler',[adminController::class,'AdminTraillers'])->name('AdminTrailler');
 Route::post('add-event',[adminController::class,'AdminEvents'])->name('AdminEvents');
+Route::post('add-song',[adminController::class,'addSong'])->name('addSong');
+Route::post('add-music',[adminController::class,'addMusic'])->name('addMusic');
 
 });
 

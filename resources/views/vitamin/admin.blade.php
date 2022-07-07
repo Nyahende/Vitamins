@@ -352,21 +352,21 @@
 
             <div class="card card-success">
                         
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     @csrf
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-5">
-                        <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="patientFullName" required autofocus>
+                    <div class="card-body">
+                        <div class="row">
+                        <div class="col-5">
+                            <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="patientFullName" required autofocus>
+                        </div>
+                        <div class="col-5">
+                            <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="birthplace" required autofocus>
+                        </div>
+                        <button type="button" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Tech</button>
                     </div>
-                    <div class="col-5">
-                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="birthplace" required autofocus>
-                    </div>
-              <button type="button" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Tech</button>
+                </form>
 
-              
-                </div>
-                </div>
+            </div>
 
               <!-- /.card-header -->
               <div class="card-body">
@@ -453,7 +453,7 @@
 
               <div class="card card-success">
                         
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                 <div class="card-body">
                     <div class="row">
@@ -467,6 +467,7 @@
 
               
                 </div>
+                </form>
                 </div>
 
               <!-- /.card-header -->
@@ -545,6 +546,141 @@
               <!-- /.card-body -->
             </div>
 
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Music Videos Table</h3>
+
+              </div>
+
+
+              <div class="card card-success">
+                        
+                <form action="{{route('addMusic')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-5">
+                        <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="musicName" required autofocus>
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="form-control" placeholder="ARTISTS NAME" style="margin:5px" name="artistName" required autofocus>
+                    </div>
+                    <div class="col-5">
+                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
+                    </div>
+              <button type="submit" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Song</button>
+
+              
+              
+                </div>
+                </form>
+                </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example4" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Video Name</th>
+                    <th>Video Artist</th>
+                    <th>Created_at</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  @foreach($musicVideo as $item)
+
+                    <tr>
+                      <td>{{$item->id}}</td>
+                      <td>{{$item->song_name}}</td>
+                      <td>{{$item->artist_name}}
+                      </td>
+                      <td>{{$item->created_at}}</td>
+                    </tr>
+                  
+                  @endforeach
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>id</th>
+                    <th>Video Name</th>
+                    <th>Artist Name</th>
+                    <th>Created_at</th>
+                    
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Audios Table</h3>
+
+              </div>
+
+
+              <div class="card card-success">
+                        
+                <form action="{{route('addSong')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-5">
+                        <input type="text" class="form-control" placeholder="AUDIO NAME" style="margin:5px" name="audioName" required autofocus>
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="form-control" placeholder="ARTIST NAME" style="margin:5px" name="artistName" required autofocus>
+                    </div>
+                 
+                    <div class="col-5">
+                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
+                    </div>
+                <button type="submit" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Song</button>
+
+                </form>
+                </div>
+                </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example4" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Song Name</th>
+                    <th>Song Artist</th>
+                    <th>Created_at</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                
+                  @foreach($audio as $item)
+                  <tr>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->song_name}}</td>
+                    <td>{{$item->artist_name}}</td>
+                    <td>{{$item->created_at}}</td>
+                  </tr>
+  
+                  @endforeach
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>id</th>
+                    <th>Song Name</th>
+                    <th>Song Artist</th>
+                    <th>Created_at</th>
+                    
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Sports Table</h3>

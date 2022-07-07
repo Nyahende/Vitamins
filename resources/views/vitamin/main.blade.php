@@ -299,55 +299,22 @@
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <ul class="products-list product-list-in-card pl-2 pr-2">
+
+                @foreach($songs as $item)
                   <li class="item">
                     <div class="product-img">
                       <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Eminem ft Lil Wayne
+                      <a href="javascript:void(0)" class="product-title">{{$item->artist_name}}
                       <span class="product-description">
-                        No Love
+                      {{$item->song_name}}
                       </span>
                     </div>
                   </li>
+                  @endforeach
                   <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Eminem ft Rihanna
-                      <span class="product-description">
-                        Monsters
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">
-                        Nas 
-                      </a>
-                      <span class="product-description">
-                        Daughters
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Niki Minaj
-                      <span class="product-description">
-                        Your Love
-                      </span>
-                    </div>
-                  </li>
+                  
                   <!-- /.item -->
                 </ul>
               </div>

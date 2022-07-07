@@ -64,6 +64,10 @@ Route::post('add-trailler',[adminController::class,'AdminTraillers'])->name('Adm
 Route::post('add-event',[adminController::class,'AdminEvents'])->name('AdminEvents');
 Route::post('add-song',[adminController::class,'addSong'])->name('addSong');
 Route::post('add-music',[adminController::class,'addMusic'])->name('addMusic');
+Route::post('add-tech',[techController::class,'uploadTech'])->name('uploadTech');
+Route::post('add-food',[foodController::class,'uploadFood'])->name('uploadFood');
+Route::post('add-sport',[sportsController::class,'uploadSport'])->name('uploadSport');
+Route::post('add-history',[historyController::class,'addHistory'])->name('addHistory');
 
 });
 

@@ -352,17 +352,17 @@
 
             <div class="card card-success">
                         
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{route('uploadTech')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="row">
                         <div class="col-5">
-                            <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="patientFullName" required autofocus>
+                            <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="videoName" required autofocus>
                         </div>
                         <div class="col-5">
-                            <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="birthplace" required autofocus>
+                            <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
                         </div>
-                        <button type="button" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Tech</button>
+                        <button type="submit" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Tech</button>
                     </div>
                 </form>
 
@@ -379,57 +379,15 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                 
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                   
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    
-                  </tr>
 
+               @foreach($tech as $tech)
+                  <tr>
+                    <td>{{$tech->id}}</td>
+                    <td>{{$tech->name}}</td>
+                    <td>{{$tech->created_at}}</td>
+                    
+                  </tr>
+               @endforeach
                   </tbody>
                   <tfoot>
                   <tr>
@@ -453,17 +411,17 @@
 
               <div class="card card-success">
                         
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{route('uploadFood')}}" method="post" enctype="multipart/form-data">
                     @csrf
                 <div class="card-body">
                     <div class="row">
                     <div class="col-5">
-                        <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="patientFullName" required autofocus>
+                        <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="videoName" required autofocus>
                     </div>
                     <div class="col-5">
-                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="birthplace" required autofocus>
+                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
                     </div>
-              <button type="button" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Food</button>
+                   <button type="submit" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Food</button>
 
               
                 </div>
@@ -481,56 +439,15 @@
                   </tr>
                   </thead>
                   <tbody>
+
+              @foreach($food as $food)
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
+                    <td>{{$food->id}}</td>
+                    <td>{{$food->name}}</td>
+                    <td>{{$food->created_at}}</td>
                     
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                 
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                 
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    
-                  </tr>
+               @endforeach
 
                   </tbody>
                   <tfoot>
@@ -681,6 +598,67 @@
               </div>
               <!-- /.card-body -->
             </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">History Table</h3>
+
+              </div>
+
+
+              <div class="card card-success">
+                        
+                <form action="{{route('addHistory')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-5">
+                        <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="videoName" required autofocus>
+                    </div>
+                   
+                 
+                    <div class="col-5">
+                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
+                    </div>
+                <button type="submit" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload History</button>
+
+                </form>
+                </div>
+                </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example4" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Video Name</th>
+                    <th>Created_at</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                
+                  @foreach($history as $item)
+                  <tr>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->created_at}}</td>
+                  </tr>
+  
+                  @endforeach
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>id</th>
+                    <th>Video Name</th>
+                    <th>Created_at</th>
+                    
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Sports Table</h3>
@@ -690,17 +668,17 @@
 
               <div class="card card-success">
                         
-                <form action="" method="post">
+                <form action="{{route('uploadSport')}}" method="post" enctype="multipart/form-data">
                     @csrf
                 <div class="card-body">
                     <div class="row">
                     <div class="col-5">
-                        <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="patientFullName" required autofocus>
+                        <input type="text" class="form-control" placeholder="VIDEO NAME" style="margin:5px" name="videoName" required autofocus>
                     </div>
                     <div class="col-5">
-                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="birthplace" required autofocus>
+                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
                     </div>
-              <button type="button" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Sport</button>
+                 <button type="submit" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Sport</button>
 
               
                 </div>
@@ -717,56 +695,15 @@
                   </tr>
                   </thead>
                   <tbody>
+                  
+                  @foreach($sport as $sport)
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
+                    <td>{{$sport->id}}</td>
+                    <td>{{$sport->name}}</td>
+                    <td>{{$sport->created_at}}</td>
                     
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                 
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-              
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    
-                  </tr>
+                 @endforeach
 
                   </tbody>
                   <tfoot>
@@ -774,7 +711,6 @@
                     <th>id</th>
                     <th>Video Name</th>
                     <th>Created_at</th>
-                    
                   </tr>
                   </tfoot>
                 </table>

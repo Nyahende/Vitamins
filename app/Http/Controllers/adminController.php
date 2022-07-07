@@ -8,6 +8,10 @@ use App\Models\trailler;
 use App\Models\event;
 use App\Models\audio;
 use App\Models\musicVideo;
+use App\Models\tech;
+use App\Models\food;
+use App\Models\sport;
+use App\Models\history;
 
 class adminController extends Controller
 {
@@ -18,7 +22,11 @@ class adminController extends Controller
         $movies = movie::orderBy('id','desc')->get();
         $traillers = trailler::orderBy('id','desc')->get();
         $events = event::orderBy('id','desc')->get();
-        return view('vitamin.admin',compact('movies','traillers','events','audio','musicVideo'));
+        $tech = tech::orderBy('id','desc')->get();
+        $food = food::orderBy('id','desc')->get();
+        $sport = sport::orderBy('id','desc')->get();
+        $history = history::orderBy('id','desc')->get();
+        return view('vitamin.admin',compact('movies','traillers','events','audio','musicVideo','tech','food','sport','history'));
     }
 
     public function AdminMovies(Request $request)

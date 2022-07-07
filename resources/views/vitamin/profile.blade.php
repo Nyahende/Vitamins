@@ -39,125 +39,7 @@
       </li>
     </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
+    
   </nav>
   <!-- /.navbar -->
 
@@ -266,9 +148,9 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <a href="editProfilePicture">
+                  <a href="editProfilePicture/{{Auth::user()->id}}">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{asset('/dist/img/user4-128x128.jpg')}}"
+                       src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}"
                        alt="User profile picture">
                   </a>
                 </div>
@@ -306,10 +188,9 @@
           <div class="col-md-9">
             <div class="card">
               <div class="card-header p-2">
-                <div class="tabs">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#video" data-toggle="tab">Videos</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#image" data-toggle="tab">Images</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Images</a></li>
                   <li class="nav-item"><a class="nav-link" href="#posts" data-toggle="tab">Posts</a></li>
                   <li class="nav-item"><a class="nav-link" href="#about" data-toggle="tab">About Me</a></li>
                 </ul>
@@ -344,7 +225,7 @@
                     @foreach($userMedia as $item)
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                        <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" alt="user image">
                         <span class="username">
                           <a href="#">{{$item->poster_name}}</a>
                         </span>
@@ -405,7 +286,7 @@
 
                     </div>
 
-                  <div class="active tab-pane" id="image">
+                  <div class="active tab-pane" id="images">
                   <button type="button" class="btn btn-success" style="margin:10px;" id="add-image-btn" >Add Image</button>
 
                   <div class="add-image-div" style="display:none">
@@ -433,7 +314,8 @@
                     @foreach($userImage as $item)
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user6-128x128.jpg')}}" alt="User Image">
+                        <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" alt="User Image">
+                       
                         <span class="username">
                           <a href="#">{{$item->poster_name}}</a>
                         </span>
@@ -443,16 +325,12 @@
                       <div class="row mb-3" style="width:100%;" >
                       <img class="img-fluid" src="{{asset('/assets')}}/{{$item->file}}" alt="Photo" style="width:100%;height:auto;">
 
-
                       </div>
-                      <!-- /.row -->
-
                       <p>
                         <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
                         <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                         <a href="{{'deleteImage/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
                         <span class="float-right" id="images-float-right">
-
                             <i class="far fa-comments mr-1"></i> Comments({{$commentCount = \App\Models\imageComment::where('post_id',$item->id)->count();}})
                         </span>
                       </p>
@@ -529,7 +407,7 @@
                     @foreach($userPost as $item)
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user1-128x128.jpg')}}" alt="user image">
+                        <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" alt="user image">
                         <span class="username">
                           <a href="#">{{$item->poster_name}}</a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -639,7 +517,7 @@
                 </div>
                 <!-- /.tab-content -->
               </div>
-              </div><!-- /.card-body -->
+              <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>

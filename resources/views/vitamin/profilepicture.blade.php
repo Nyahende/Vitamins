@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vitamin | Users</title>
+  <title>Vitamin | Profile</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{asset('/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('/css/vitamin.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
+@if(Auth::id() == $id)
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -26,6 +26,7 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{route('main')}}" class="nav-link">Home</a>
       </li>
+      
       <li class="nav-item d-none d-sm-inline-block">
       <a class="dropdown-item" href="{{ route('logout') }}"
           onclick="event.preventDefault();
@@ -37,7 +38,6 @@
           @csrf
       </form>
       </li>
-      
     </ul>
 
    
@@ -132,7 +132,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Users</h1>
+            <h1>Change Profile picture</h1>
           </div>
          
         </div>
@@ -141,60 +141,36 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-
-              <div class="card-tools">
-                <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" placeholder="Search User">
-                  <div class="input-group-append">
-                    <div class="btn btn-primary">
-                      <i class="fas fa-search"></i>
+      <div class="container-fluid">
+        <div class="row">
+         
+        <div class="add-media-div">
+            <form action="{{route('ProfilePictureRoute')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="card-body">
+                
+                <div class="form-group">
+                <input type="hidden" name="id" value="{{$editProfilePicture['id']}}">
+                    <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                     </div>
-                  </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text" id="upload-media-btn">Upload</button>
+                    </div>
+                    </div>
                 </div>
-              </div>
-              <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-              
-                <!-- /.float-right -->
-              </div>
-              <div class="table-responsive mailbox-messages" style="overflow-y:scroll;height:380px">
-                <table class="table table-hover table-striped">
-                  <tbody>
-
-                  @foreach($users as $item)
-                  <tr>
-                    <td >
-                        <img src="{{asset('/assets')}}/{{$item->profile_picture}}"  style="width:80px;height:80px;border-radius:10px;" alt="User Image">
-                        <div class="info">
-                        <a href="{{'userprofile/'.$item->name}}" class="d-block">{{$item->name}}</a>
-                        </div>
-                    </td>
-                  </tr>
-                  @endforeach
-                 
-                  </tbody>
-                </table>
-                <!-- /.table -->
-              </div>
-              <!-- /.mail-box-messages -->
-            </div>
-            <!-- /.card-body -->
-            
-          <!-- /.card -->
+                </div>
+            </form>
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+         
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
@@ -222,38 +198,13 @@
 <script src="{{asset('/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
-<!-- Page specific script -->
-<script>
-  $(function () {
-    //Enable check and uncheck all functionality
-    $('.checkbox-toggle').click(function () {
-      var clicks = $(this).data('clicks')
-      if (clicks) {
-        //Uncheck all checkboxes
-        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
-        $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
-      } else {
-        //Check all checkboxes
-        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)
-        $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
-      }
-      $(this).data('clicks', !clicks)
-    })
+<script src="{{asset('/js/formslide.js')}}"></script>
+@else
 
-    //Handle starring for font awesome
-    $('.mailbox-star').click(function (e) {
-      e.preventDefault()
-      //detect type
-      var $this = $(this).find('a > i')
-      var fa    = $this.hasClass('fa')
+<div class="sorry" style="text-align:center;font-size:25px;margin-top:200px;">
+Sorry, You can not access the page you are requesting
+</div>
 
-      //Switch states
-      if (fa) {
-        $this.toggleClass('fa-star')
-        $this.toggleClass('fa-star-o')
-      }
-    })
-  })
-</script>
+@endif
 </body>
 </html>

@@ -16,9 +16,9 @@ class profileController extends Controller
 {
     public function profile()
     {
-        $videoComments = videoComment::all();
-        $imageComments = imageComment::all();
-        $postComments = postComment::all();
+        $videoComments = videoComment::orderBy('id','desc')->get();
+        $imageComments = imageComment::orderBy('id','desc')->get();
+        $postComments = postComment::orderBy('id','desc')->get();
         $username = Auth::user()->name;
         $userId = Auth::id();
         $userMedia = media::where('poster_name',$username)->orderBy('id','desc')->get();
@@ -87,6 +87,24 @@ class profileController extends Controller
 
         $UpdateUser->save();
 
+        return redirect('profile');
+    }
+
+    public function editProfilePicture($id){
+
+        $editProfilePicture = User::find($id);
+      
+        return view('vitamin.profilepicture',['editProfilePicture'=>$editProfilePicture],compact('id'));
+    }
+
+
+    public function ProfilePictureRoute(Request $request){
+        $profilePicture=User::find($request->id);
+        $file=$request->file;
+        $filename=time().'.'.$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+        $profilePicture->profile_picture=$filename;
+        $profilePicture->save();
         return redirect('profile');
     }
 

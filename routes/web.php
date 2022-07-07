@@ -32,6 +32,7 @@ Route::group(['middleware'=>['auth']], function(){
 
 Route::get('homepage',[mainController::class,'main'])->name('main');
 Route::get('profile',[profileController::class,'profile'])->name('profile');
+Route::get('editProfilePicture/{id}',[profileController::class,'editProfilePicture'])->name('editProfilePicture');
 Route::get('posts',[postsController::class,'posts'])->name('posts');
 Route::get('follow',[followController::class,'follow'])->name('follow');
 Route::get('songs',[songsController::class,'songs'])->name('songs');
@@ -41,7 +42,7 @@ Route::get('history',[historyController::class,'history'])->name('history');
 Route::get('sports',[sportsController::class,'sports'])->name('sports');
 Route::get('food',[foodController::class,'food'])->name('food');
 Route::get('members',[membersController::class,'members'])->name('members');
-Route::get('userprofile',[userProfileController::class,'userprofile'])->name('userprofile');
+Route::get('userprofile/{name}',[userProfileController::class,'userprofile'])->name('userprofile');
 Route::get('editabout/{userId}',[ProfileController::class,'editAboutMe']);
 Route::post('UpdateUser',[ProfileController::class,'UpdateUser'])->name('UpdateUser');
 Route::get('admin',[adminController::class,'admin']);
@@ -57,6 +58,7 @@ Route::get('deletePostComment/{id}',[ProfileController::class,'deletePostComment
 Route::post('ProfileComment',[ProfileController::class,'ProfileComment'])->name('Profilecomment');
 Route::post('ProfileImageComment',[ProfileController::class,'ProfileImageComment'])->name('ProfileImageComment');
 Route::post('ProfilePostComment',[ProfileController::class,'ProfilePostComment'])->name('ProfilePostComment');
+Route::post('ProfilePictureRoute',[ProfileController::class,'ProfilePictureRoute'])->name('ProfilePictureRoute');
 
 });
 

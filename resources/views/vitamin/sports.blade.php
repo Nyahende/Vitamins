@@ -164,6 +164,14 @@
             <div class="tab-content" id="custom-content-below-tabContent">
               <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
            
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" name="sportsearch" id="sportsearch" placeholder="Search">
+                      <table>
+                          <tbody id="sportContent" class="sportsearchdata" style="background-color:black;color:white;"></tbody>
+                      </table>
+                    </div>
+                  </div>
            @foreach($sport as $sport)
 
               <div class="post">
@@ -232,5 +240,32 @@
 <script src="{{asset('/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
+
+<script>
+$(document).on('keyup','#sportsearch', function()
+    {
+        $value = $(this).val();
+        
+        if($value)
+        {
+            $('.sportsearchdata').show();
+        }
+        else{
+            $('.sportsearchdata').hide();
+        }
+        $.ajax({
+
+            type:'get',
+            url:'{{URL::to('searchsport')}}',
+            data:{'sportsearch':$value},
+
+            success:function(data)
+            {
+                console.log(data);
+                $('#sportContent').html(data);
+            }
+        });
+    });
+</script>
 </body>
 </html>

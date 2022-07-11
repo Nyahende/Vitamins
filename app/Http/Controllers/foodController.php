@@ -29,4 +29,33 @@ class foodController extends Controller
 
         return redirect()->back();
     }
+
+    
+    public function searchfood(Request $request)
+    {
+        $output = '';
+       
+        $food = food::where('name','Like','%'.$request->foodsearch.'%')->get();
+
+        foreach($food as $item)
+        {
+           $output.= 
+              
+           '
+            <tr>
+
+            <td> 
+            '.'
+            <a href="#'.$item->id.'">'.''. $item->name.'</a> <br>
+            
+            '.'
+            </td>
+            </tr>';
+           
+
+        }
+
+        return response($output);
+
+    }
 }

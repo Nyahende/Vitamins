@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="{{asset('/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('/dist/css/adminlte.min.css')}}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -150,12 +153,10 @@
 
               <div class="card-tools">
                 <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" placeholder="Search User">
-                  <div class="input-group-append">
-                    <div class="btn btn-primary">
-                      <i class="fas fa-search"></i>
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" name="usersearch" id="usersearch" placeholder="Search User">
+                  <table>
+                      <tbody id="Content" class="searchdata" style="background-color:black;color:white;"></tbody>
+                  </table>
                 </div>
               </div>
               <!-- /.card-tools -->
@@ -172,14 +173,16 @@
                   <tbody>
 
                   @foreach($users as $item)
-                  <tr>
-                    <td >
-                        <img src="{{asset('/assets')}}/{{$item->profile_picture}}"  style="width:80px;height:80px;border-radius:10px;" alt="User Image">
-                        <div class="info">
-                        <a href="{{'userprofile/'.$item->name}}" class="d-block">{{$item->name}}</a>
-                        </div>
-                    </td>
-                  </tr>
+                  <div id="{{$item->id}}">
+                    <tr>
+                      <td>
+                          <img src="{{asset('/assets')}}/{{$item->profile_picture}}"  style="width:80px;height:80px;border-radius:10px;" alt="User Image">
+                          <div class="info">
+                          <a href="{{'userprofile/'.$item->name}}" class="d-block">{{$item->name}}</a>
+                          </div>
+                      </td>
+                    </tr>
+                  </div>
                   @endforeach
                  
                   </tbody>
@@ -223,37 +226,35 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
+
+
 <script>
-  $(function () {
-    //Enable check and uncheck all functionality
-    $('.checkbox-toggle').click(function () {
-      var clicks = $(this).data('clicks')
-      if (clicks) {
-        //Uncheck all checkboxes
-        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
-        $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
-      } else {
-        //Check all checkboxes
-        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)
-        $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
-      }
-      $(this).data('clicks', !clicks)
-    })
+   $(document).on('keyup','#usersearch', function()
+        {
+            $value = $(this).val();
+            
+            if($value)
+            {
+                $('.searchdata').show();
+            }
+            else{
+                $('.searchdata').hide();
+            }
+            
+            $.ajax({
 
-    //Handle starring for font awesome
-    $('.mailbox-star').click(function (e) {
-      e.preventDefault()
-      //detect type
-      var $this = $(this).find('a > i')
-      var fa    = $this.hasClass('fa')
+                type:'get',
+                url:'{{URL::to('searchuser')}}',
+                data:{'usersearch':$value},
 
-      //Switch states
-      if (fa) {
-        $this.toggleClass('fa-star')
-        $this.toggleClass('fa-star-o')
-      }
-    })
-  })
+                success:function(data)
+                {
+                    console.log(data);
+                    $('#Content').html(data);
+                }
+
+            });
+        });
 </script>
 </body>
 </html>

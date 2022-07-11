@@ -658,6 +658,139 @@
                 </table>
               </div>
               <!-- /.card-body -->
+              <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Books Table</h3>
+
+              </div>
+
+
+              <div class="card card-success">
+                        
+                <form action="{{route('addBook')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                  <div class="card-body">
+                      <div class="row">
+                      <div class="col-5">
+                          <input type="text" class="form-control" placeholder="BOOK NAME" style="margin:5px" name="bookName" required autofocus>
+                      </div>
+
+                      <div class="col-5">
+                          <input type="text" class="form-control" placeholder="AUTHOR" style="margin:5px" name="author" required autofocus>
+                      </div>
+
+                      
+                      <div class="col-5">
+                          <input type="file" class="form-control" placeholder="PREVIEW" style="margin:5px" name="preview" required autofocus>
+                      </div>
+                    
+                  
+                      <div class="col-5">
+                          <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
+                      </div>
+
+                      <div class="col-5">
+                          <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="bookCover" required autofocus>
+                      </div>
+                  <button type="submit" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Book</button>
+
+                </form>
+                </div>
+                </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example4" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Book Name</th>
+                    <th>Created_at</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                
+                  @foreach($book as $item)
+                  <tr>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->created_at}}</td>
+                  </tr>
+  
+                  @endforeach
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>id</th>
+                    <th>book Name</th>
+                    <th>Created_at</th>
+                    
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Podcast Table</h3>
+
+              </div>
+
+
+              <div class="card card-success">
+                        
+                <form action="{{route('addPodcast')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-5">
+                        <input type="text" class="form-control" placeholder="PODCAST NAME" style="margin:5px" name="podName" required autofocus>
+                    </div>
+                   
+                 
+                    <div class="col-5">
+                        <input type="file" class="form-control" placeholder="FILE" style="margin:5px" name="file" required autofocus>
+                    </div>
+                <button type="submit" class="btn  btn-primary btn-sm" id="add-movie" style="margin:10;">Upload Podcast</button>
+
+                </form>
+                </div>
+                </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example4" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Podcast Name</th>
+                    <th>Created_at</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                
+                  @foreach($podcast as $item)
+                  <tr>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->created_at}}</td>
+                  </tr>
+  
+                  @endforeach
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>id</th>
+                    <th>Podcast Name</th>
+                    <th>Created_at</th>
+                    
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+
+
             </div>
             <div class="card">
               <div class="card-header">

@@ -171,9 +171,9 @@
             <div class="info-box mb-3">
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-images"></i></span>
 
-              <a href="{{route('posts')}}">
+              <a href="{{route('podcasts')}}">
               <div class="info-box-content">
-                <span class="info-box-text">Posts</span>
+                <span class="info-box-text">PodCasts</span>
                 <span class="info-box-number">41,410</span>
               </div>
               </a>
@@ -189,9 +189,9 @@
             <div class="info-box mb-3">
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
-              <a href="{{route('follow')}}">
+              <a href="{{route('book')}}">
               <div class="info-box-content">
-                <span class="info-box-text">Followers</span>
+                <span class="info-box-text">Books</span>
                 <span class="info-box-number">2,000</span>
               </div>
               </a>

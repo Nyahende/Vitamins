@@ -24,6 +24,7 @@ $(document).ready(function(){
     $('#add-movie-btn').click(function(){
         $('.add-movie-div').slideToggle();
     });
+    
     $('#upload-movie-btn').click(function(){
         $('.add-movie-div').slideUp();
     });
@@ -31,6 +32,12 @@ $(document).ready(function(){
     $('#video-float-right').click(function(){
 
         $('.videos-comments-div').slideToggle();
+
+    });
+
+    $('#read-review-btn').click(function(){
+
+        $('.reviews-div').slideToggle();
 
     });
 

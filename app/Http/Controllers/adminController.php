@@ -12,6 +12,8 @@ use App\Models\tech;
 use App\Models\food;
 use App\Models\sport;
 use App\Models\history;
+use App\Models\podcast;
+use App\Models\book;
 
 class adminController extends Controller
 {
@@ -26,7 +28,9 @@ class adminController extends Controller
         $food = food::orderBy('id','desc')->get();
         $sport = sport::orderBy('id','desc')->get();
         $history = history::orderBy('id','desc')->get();
-        return view('vitamin.admin',compact('movies','traillers','events','audio','musicVideo','tech','food','sport','history'));
+        $podcast = podcast::orderBy('id','desc')->get();
+        $book = book::orderBy('id','desc')->get();
+        return view('vitamin.admin',compact('movies','book','podcast','traillers','events','audio','musicVideo','tech','food','sport','history'));
     }
 
     public function AdminMovies(Request $request)

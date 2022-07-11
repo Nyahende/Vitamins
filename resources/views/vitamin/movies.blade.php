@@ -9,12 +9,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{asset('/plugins/sweetalert2/sweetalert2.min.css')}}">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="{{asset('/plugins/toastr/toastr.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('/dist/css/adminlte.min.css')}}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -148,11 +146,18 @@
                 <div class="tab-content">
 
                   <div class="active tab-pane" id="traillers">
+
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" name="trailersearch" id="trailersearch" placeholder="Search a Trailler">
+                      <table>
+                          <tbody id="Content" class="searchdata" style="background-color:black;color:white;"></tbody>
+                      </table>
+                    </div>
+                  </div>
                         @foreach($traillers as $traillers)
 
-
                         <div class="post">
-
 
                               <div class="user-block" style="margin-left:-50px;">
                                   <span class="username">
@@ -174,12 +179,22 @@
                                   <a href="#" class="link-black text-sm mr-2"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                                 
                                 </p>
-                          </div>
-                          @endforeach
+                        </div>
+
+                        @endforeach
 
                     </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="movies">
+
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" name="moviesearch" id="moviesearch" placeholder="Search a Movie">
+                      <table>
+                          <tbody id="movieContent" class="moviesearchdata" style="background-color:black;color:white;"></tbody>
+                      </table>
+                    </div>
+                  </div>
                   @foreach($movies as $movies)
 
 
@@ -213,11 +228,18 @@
 
 
                   <div class="tab-pane" id="events">
+
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" name="eventssearch" id="eventssearch" placeholder="Search an Event">
+                      <table>
+                          <tbody id="eventContent" class="eventsearchdata" style="background-color:black;color:white;"></tbody>
+                      </table>
+                    </div>
+                  </div>
                   @foreach($events as $events)
 
-
-                    <div class="post">
-
+                      <div class="post">
 
                           <div class="user-block" style="margin-left:-50px;">
                               <span class="username">
@@ -231,7 +253,6 @@
                             <video controls class="video-controls" style="width:100%;height:auto;">
                             <source src="{{asset('/assets')}}/{{$events->file}}" type="video/mp4" style="width:100%;height:auto;">
                             Your audio format is not supported</video>
-
                             </div>
                             <p>
 
@@ -240,7 +261,7 @@
                             
                             </p>
                       </div>
-                      @endforeach
+                  @endforeach
                     
                   </div>
                
@@ -283,5 +304,86 @@
 <script src="{{asset('/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
+
+<script>
+   $(document).on('keyup','#trailersearch', function()
+        {
+            $value = $(this).val();
+            
+            if($value)
+            {
+                $('.searchdata').show();
+            }
+            else{
+                $('.searchdata').hide();
+            }
+            $.ajax({
+
+                type:'get',
+                url:'{{URL::to('searchtrailer')}}',
+                data:{'trailersearch':$value},
+
+                success:function(data)
+                {
+                    console.log(data);
+                    $('#Content').html(data);
+                }
+            });
+        });
+</script>
+
+<script>
+   $(document).on('keyup','#moviesearch', function()
+        {
+            $value = $(this).val();
+            
+            if($value)
+            {
+                $('.moviesearchdata').show();
+            }
+            else{
+                $('.moviesearchdata').hide();
+            }
+            $.ajax({
+
+                type:'get',
+                url:'{{URL::to('searchmovie')}}',
+                data:{'moviesearch':$value},
+
+                success:function(data)
+                {
+                    console.log(data);
+                    $('#movieContent').html(data);
+                }
+            });
+        });
+</script>
+
+<script>
+   $(document).on('keyup','#eventssearch', function()
+        {
+            $value = $(this).val();
+            
+            if($value)
+            {
+                $('.eventsearchdata').show();
+            }
+            else{
+                $('.eventsearchdata').hide();
+            }
+            $.ajax({
+
+                type:'get',
+                url:'{{URL::to('searchevent')}}',
+                data:{'eventssearch':$value},
+
+                success:function(data)
+                {
+                    console.log(data);
+                    $('#eventContent').html(data);
+                }
+            });
+        });
+</script>
 </body>
 </html>

@@ -10,11 +10,12 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{asset('/plugins/sweetalert2/sweetalert2.min.css')}}">
   <!-- Toastr -->
-  <link rel="stylesheet" href="{{asset('/plugins/toastr/toastr.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('/dist/css/adminlte.min.css')}}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -147,15 +148,20 @@
               <li class="nav-item">
                 <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false" style="font-size:12px;">Audios</a>
               </li>
-              <li class="nav-item">
-              </li>
-            
             </ul>
             <div class="tab-content" id="custom-content-below-tabContent">
               <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
                   
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" name="videosearch" id="videosearch" placeholder="Search">
+                      <table>
+                          <tbody id="videoContent" class="videosearchdata" style="background-color:black;color:white;margin-top:50px;"></tbody>
+                      </table>
+                    </div>
+                  </div>
                   @foreach($musicVideo as $musicVideo)
-                   <div class="post">
+                   <div class="post" id="{{$musicVideo->id}}">
                       <div class="user-block" style="margin-left:-40px;">
                         <span class="username">
                           <a href="#">{{$musicVideo->song_name}}</a>
@@ -171,15 +177,22 @@
                       </div>
                       <p>
                         <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                       </p>
                     </div>
-                    @endforeach
+                  @endforeach
               </div>
               <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
              
-              @foreach($songs as $songs)
-                   <div class="post">
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" name="audiosearch" id="audiosearch" placeholder="Search">
+                      <table>
+                          <tbody id="audioContent" class="audiosearchdata" style="background-color:black;color:white;"></tbody>
+                      </table>
+                    </div>
+                  </div>
+               @foreach($songs as $songs)
+                    <div class="post" id="{{$songs->id}}">
                       <div class="user-block" style="margin-left:-40px;">
                         <span class="username">
                           <a href="#">{{$songs->song_name}}</a>
@@ -195,10 +208,10 @@
                       </div>
                       <p>
                         <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                       </p>
                     </div>
                @endforeach
+               
               </div>
               
              
@@ -240,5 +253,60 @@
 <script src="{{asset('/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
+
+
+<script>
+$(document).on('keyup','#videosearch', function()
+    {
+        $value = $(this).val();
+        
+        if($value)
+        {
+            $('.videosearchdata').show();
+        }
+        else{
+            $('.videosearchdata').hide();
+        }
+        $.ajax({
+
+            type:'get',
+            url:'{{URL::to('searchvideo')}}',
+            data:{'videosearch':$value},
+
+            success:function(data)
+            {
+                console.log(data);
+                $('#videoContent').html(data);
+            }
+        });
+    });
+</script> 
+ <script>
+   $(document).on('keyup','#audiosearch', function()
+        {
+            $value = $(this).val();
+            
+            if($value)
+            {
+                $('.audiosearchdata').show();
+            }
+            else{
+                $('.audiosearchdata').hide();
+            }
+            $.ajax({
+
+                type:'get',
+                url:'{{URL::to('searchaudio')}}',
+                data:{'audiosearch':$value},
+
+                success:function(data)
+                {
+                    console.log(data);
+                    $('#audioContent').html(data);
+                }
+            });
+        });
+</script> 
+
 </body>
 </html>

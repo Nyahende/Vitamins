@@ -165,6 +165,15 @@
               <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
               
               
+
+                 <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" name="foodsearch" id="foodsearch" placeholder="Search">
+                      <table>
+                          <tbody id="foodContent" class="foodsearchdata" style="background-color:black;color:white;"></tbody>
+                      </table>
+                    </div>
+                  </div>
               @foreach($food as $food)
 
               <div class="post">
@@ -232,5 +241,32 @@
 <script src="{{asset('/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
+
+<script>
+$(document).on('keyup','#foodsearch', function()
+    {
+        $value = $(this).val();
+        
+        if($value)
+        {
+            $('.foodsearchdata').show();
+        }
+        else{
+            $('.foodsearchdata').hide();
+        }
+        $.ajax({
+
+            type:'get',
+            url:'{{URL::to('searchfood')}}',
+            data:{'foodsearch':$value},
+
+            success:function(data)
+            {
+                console.log(data);
+                $('#foodContent').html(data);
+            }
+        });
+    });
+</script>
 </body>
 </html>

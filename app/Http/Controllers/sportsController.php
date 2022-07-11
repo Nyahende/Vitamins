@@ -27,4 +27,32 @@ class sportsController extends Controller
 
         return redirect()->back();
     }
+
+    public function searchsport(Request $request)
+    {
+        $output = '';
+       
+        $sport = sport::where('name','Like','%'.$request->techsearch.'%')->get();
+
+        foreach($sport as $item)
+        {
+           $output.= 
+              
+           '
+            <tr>
+
+            <td> 
+            '.'
+            <a href="#'.$item->id.'">'.''. $item->name.'</a> <br>
+            
+            '.'
+            </td>
+            </tr>';
+           
+
+        }
+
+        return response($output);
+
+    }
 }

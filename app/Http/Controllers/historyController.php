@@ -27,4 +27,32 @@ class historyController extends Controller
 
         return redirect()->back();
     }
+
+    public function searchhistory(Request $request)
+    {
+        $output = '';
+       
+        $tech = history::where('name','Like','%'.$request->historysearch.'%')->get();
+
+        foreach($tech as $item)
+        {
+           $output.= 
+              
+           '
+            <tr>
+
+            <td> 
+            '.'
+            <a href="#'.$item->id.'">'.''. $item->name.'</a> <br>
+            
+            '.'
+            </td>
+            </tr>';
+           
+
+        }
+
+        return response($output);
+
+    }
 }

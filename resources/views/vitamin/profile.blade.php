@@ -267,19 +267,17 @@
                             <a href="{{'deleteVideoComment/'.$comment->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
                             </p>
                             
-                          @endif
+                        @endif
 
                       @endforeach
                       </div>
 
-                       
-
                       <form action="{{route('Profilecomment')}}" method="post">
                         @csrf
-                      <input  type="hidden"  value="{{$item->id}}" name="postId">
-                      <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="profilePicture">
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
-                      <button type="submit" class="input-group-text" >Send</button>
+                        <input  type="hidden"  value="{{$item->id}}" name="postId">
+                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="profilePicture">
+                        <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
+                        <button type="submit" class="input-group-text" >Send</button>
 
                       </form>
                     </div>

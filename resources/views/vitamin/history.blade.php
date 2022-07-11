@@ -39,27 +39,7 @@
           @csrf
       </form>
       </li>
-     
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
+    
     </ul>
 
    
@@ -163,6 +143,14 @@
             <div class="tab-content" id="custom-content-below-tabContent">
               <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
              
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control" name="historysearch" id="historysearch" placeholder="Search">
+                      <table>
+                          <tbody id="historyContent" class="historysearchdata" style="background-color:black;color:white;"></tbody>
+                      </table>
+                    </div>
+                  </div>
              @foreach($history as $history)
 
               <div class="post">
@@ -228,5 +216,32 @@
 <script src="{{asset('/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
+
+<script>
+$(document).on('keyup','#historysearch', function()
+    {
+        $value = $(this).val();
+        
+        if($value)
+        {
+            $('.historysearchdata').show();
+        }
+        else{
+            $('.historysearchdata').hide();
+        }
+        $.ajax({
+
+            type:'get',
+            url:'{{URL::to('searchhistory')}}',
+            data:{'historysearch':$value},
+
+            success:function(data)
+            {
+                console.log(data);
+                $('#historyContent').html(data);
+            }
+        });
+    });
+</script>
 </body>
 </html>

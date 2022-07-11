@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mainController;
 use App\Http\Controllers\profileController;
-use App\Http\Controllers\postsController;
-use App\Http\Controllers\followController;
+use App\Http\Controllers\podcastsController;
+use App\Http\Controllers\bookController;
 use App\Http\Controllers\songsController;
 use App\Http\Controllers\moviesController;
 use App\Http\Controllers\techController;
@@ -33,8 +33,8 @@ Route::group(['middleware'=>['auth']], function(){
 Route::get('homepage',[mainController::class,'main'])->name('main');
 Route::get('profile',[profileController::class,'profile'])->name('profile');
 Route::get('editProfilePicture/{id}',[profileController::class,'editProfilePicture'])->name('editProfilePicture');
-Route::get('posts',[postsController::class,'posts'])->name('posts');
-Route::get('follow',[followController::class,'follow'])->name('follow');
+Route::get('podcasts',[podcastsController::class,'podcasts'])->name('podcasts');
+Route::get('book',[bookController::class,'book'])->name('book');
 Route::get('songs',[songsController::class,'songs'])->name('songs');
 Route::get('movies',[moviesController::class,'movies'])->name('movies');
 Route::get('technology',[techController::class,'technology'])->name('technology');
@@ -68,6 +68,23 @@ Route::post('add-tech',[techController::class,'uploadTech'])->name('uploadTech')
 Route::post('add-food',[foodController::class,'uploadFood'])->name('uploadFood');
 Route::post('add-sport',[sportsController::class,'uploadSport'])->name('uploadSport');
 Route::post('add-history',[historyController::class,'addHistory'])->name('addHistory');
+Route::post('add-book',[bookController::class,'addBook'])->name('addBook');
+Route::post('add-podcast',[podcastsController::class,'addPodcast'])->name('addPodcast');
+Route::post('add-review',[bookController::class,'BookReview'])->name('BookReview');
+Route::get('view/{file}',[bookController::class,'BookView']);
+Route::get('view/{file}',[bookController::class,'PreviewView']);
+Route::get('search',[bookController::class,'search']);
+Route::get('searchuser',[membersController::class,'searchuser']);
+Route::get('searchpodcast',[podcastsController::class,'searchpodcast']);
+Route::get('searchtrailer',[moviesController::class,'searchtrailer']);
+Route::get('searchmovie',[moviesController::class,'searchmovie']);
+Route::get('searchevent',[moviesController::class,'searchevent']);
+Route::get('searchvideo',[songsController::class,'searchvideo']);
+Route::get('searchaudio',[songsController::class,'searchaudio']);
+Route::get('searchtech',[techController::class,'searchtech']);
+Route::get('searchhistory',[historyController::class,'searchhistory']);
+Route::get('searchsport',[sportsController::class,'searchsport']);
+Route::get('searchfood',[foodController::class,'searchfood']);
 
 });
 

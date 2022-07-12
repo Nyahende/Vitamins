@@ -168,6 +168,10 @@
                     <label for="exampleInputPassword1">Notes</label>
                     <textarea type="text" class="form-control" row=3 col=3  placeholder="Notes" name="aboutNotes"></textarea>
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Status</label>
+                    <textarea type="text" class="form-control" row=3 col=3  placeholder="Status" name="status"></textarea>
+                  </div>
 
                   
                  

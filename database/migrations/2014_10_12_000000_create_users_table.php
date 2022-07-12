@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->text('hobbies')->nullable();
             $table->text('education')->nullable();
             $table->text('notes')->nullable();
+            $table->text('status')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

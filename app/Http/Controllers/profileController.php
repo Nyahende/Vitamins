@@ -84,6 +84,7 @@ class profileController extends Controller
         $UpdateUser->hobbies = $request->aboutHobbies;
         $UpdateUser->education = $request->aboutEducation;
         $UpdateUser->notes = $request->aboutNotes;
+        $UpdateUser->status = $request->status;
 
         $UpdateUser->save();
 

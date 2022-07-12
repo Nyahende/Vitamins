@@ -80,7 +80,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3">
         <div class="image">
-          <img src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+          @if(Auth::user()->profile_picture)
+           <img src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+          @else
+          <img src="{{asset('/dist/img/user.jpg')}}" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+          @endif
         </div><br>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -173,24 +177,25 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
+                  @if($userDetails->profile_picture)
                   <img class="profile-user-img img-fluid img-circle"
                        src="{{asset('/assets')}}/{{$userDetails->profile_picture}}"
                        alt="User profile picture">
+                  @else
+                  <img class="profile-user-img img-fluid img-circle"
+                    src="{{asset('/dist/img/user.jpg')}}"
+                    alt="User profile picture">
+                  @endif
                 </div>
 
                 <h3 class="profile-username text-center">{{$userDetails->name}}</h3>
 
                 <p class="text-muted text-center">{{$userDetails->occupation}}</p>
+                <p class="text-muted text-center">{{$userDetails->status}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Followers</b> <a class="float-right">1,322</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
+                   <a href="{{route('chat',[$userDetails->name])}}"> <b>Inbox</b></a> 
                   </li>
                   <li class="list-group-item">
                     <b>Posts</b> <a class="float-right">287</a>
@@ -222,7 +227,11 @@
 
 
                     <div class="user-block">
+                      @if($userDetails->profile_picture)
                         <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$userDetails->profile_picture}}" alt="user image">
+                      @else 
+                      <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user.jpg')}}" alt="user image">
+                      @endif
                         <span class="username">
                           <a href="{{route('userprofilename',[$userVideos->poster_name])}}">{{$userVideos->poster_name}}</a>
                         </span>
@@ -238,7 +247,6 @@
                       <p>
 
                         <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm mr-2"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                         
                         <span class="float-right" id="video-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\videoComment::where('post_id',$userVideos->id)->count();}})
@@ -251,7 +259,11 @@
                          @if($comment->post_id == $userVideos->id)
 
                             <div class="user-block">
+                              @if($comment->sender_picture)
                               <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
+                              @else
+                              <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user.jpg')}}" alt="user image">
+                              @endif
                               <span class="username">
                                 <a href="{{route('userprofilename',[$comment->sender_name])}}">{{$comment->sender_name}}</a>
                               </span>
@@ -260,7 +272,6 @@
                             <!-- /.user-block -->
                             <p>
                             {{$comment->comment_body}} <br>
-                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                             </p>
                             
                           @endif
@@ -288,7 +299,11 @@
                     @foreach($userImages as $userImages)
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$userDetails->profile_picture}}" alt="User Image">
+                        @if($userDetails->profile_picture)
+                         <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$userDetails->profile_picture}}" alt="User Image">
+                        @else
+                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user.jpg')}}" alt="User Image">
+                        @endif
                         <span class="username">
                           <a href="{{route('userprofilename',[$userImages->poster_name])}}">{{$userImages->poster_name}}</a>
                         </span>
@@ -304,7 +319,6 @@
 
                       <p>
                         <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                         <span class="float-right" id="images-float-right">
 
                             <i class="far fa-comments mr-1"></i> Comments({{$commentCount = \App\Models\imageComment::where('post_id',$userImages->id)->count();}})
@@ -316,7 +330,11 @@
                          @if($comment->post_id == $userImages->id)
 
                             <div class="user-block">
-                              <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
+                              @if($comment->sender_picture)
+                               <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
+                              @else
+                               <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user.jpg')}}" alt="user image">
+                              @endif
                               <span class="username">
                                 <a href="{{route('userprofilename',[$comment->sender_name])}}">{{$comment->sender_name}}</a>
                               </span>
@@ -324,7 +342,6 @@
                             </div>
                             <p>
                             {{$comment->comment_body}} <br>
-                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                             </p>
 
                             
@@ -353,8 +370,12 @@
                     @foreach($userPosts as $userPosts)
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$userDetails->profile_picture}}" alt="User Image">
-                        <span class="username">
+                        @if($userDetails->profile_picture)
+                         <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$userDetails->profile_picture}}" alt="User Image">
+                        @else
+                        <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user.jpg')}}" alt="User Image">
+                        @endif
+                         <span class="username">
                           <a href="{{route('userprofilename',[$userPosts->poster_name])}}">{{$userPosts->poster_name}}</a>
                         </span>
                         <span class="description">{{$userPosts->caption}}</span>
@@ -367,7 +388,6 @@
 
                       <p>
                         <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                         <span class="float-right" id="posts-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\postComment::where('post_id',$userPosts->id)->count();}})
                         </span>
@@ -378,7 +398,11 @@
                          @if($comment->post_id == $userPosts->id)
 
                             <div class="user-block">
-                              <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
+                              @if($comment->sender_picture)
+                               <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
+                              @else
+                              <img class="img-circle img-bordered-sm" src="{{asset('/dist/img/user.jpg')}}" alt="user image">
+                              @endif
                               <span class="username">
                                 <a href="{{route('userprofilename',[$comment->sender_name])}}">{{$comment->sender_name}}</a>
                               </span>
@@ -386,10 +410,8 @@
                             </div>
                             <p>
                             {{$comment->comment_body}} <br>
-                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                             </p>
 
-                            
                           @endif
 
                       @endforeach

@@ -59,8 +59,13 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3">
-        <div class="image">
-          <img src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+      <div class="image">
+          @if(Auth::user()->profile_picture)
+          <img src="{{asset('/assets')}}/{{Auth::user()->profile_picture}}??" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+        
+          @else
+          <img src="{{asset('/dist/img/user.jpg')}}" class="img-circle elevation-2" alt="User Image" style="width:80px;height:80px;">
+          @endif
         </div><br>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -173,16 +178,23 @@
                   <tbody>
 
                   @foreach($users as $item)
+
+                   @if($item->name !== Auth::user()->name)
                   <div id="{{$item->id}}">
                     <tr>
                       <td>
+                        @if($item->profile_picture)
                           <img src="{{asset('/assets')}}/{{$item->profile_picture}}"  style="width:80px;height:80px;border-radius:10px;" alt="User Image">
+                        @else  
+                        <img src="{{asset('/dist/img/user.jpg')}}"  style="width:80px;height:80px;border-radius:10px;" alt="User Image">
+                        @endif
                           <div class="info">
                           <a href="{{'userprofile/'.$item->name}}" class="d-block">{{$item->name}}</a>
                           </div>
                       </td>
                     </tr>
                   </div>
+                  @endif
                   @endforeach
                  
                   </tbody>

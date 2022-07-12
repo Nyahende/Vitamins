@@ -14,6 +14,7 @@ use App\Http\Controllers\foodController;
 use App\Http\Controllers\membersController;
 use App\Http\Controllers\userProfileController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\liveChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,5 +89,9 @@ Route::get('searchfood',[foodController::class,'searchfood']);
 
 });
 
+Route::get('chat/{name}',[liveChatController::class,'Chat'])->name('chat');
+
+Route::post('send-text',[liveChatController::class,'sendtext'])->name('sendtext');
+Route::get('fetch-texts/{name}',[liveChatController::class,'fetchtexts'])->name('fetchtexts');
 Auth::routes();
 

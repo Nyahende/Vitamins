@@ -26,7 +26,12 @@ class userProfileController extends Controller
         $userVideoComments = videoComment::orderBy('id','desc')->get();
         $userImageComments = imageComment::orderBy('id','desc')->get();
         $userPostComments = postComment::orderBy('id','desc')->get();
+        $mediaCount = media::where('poster_name',$name)->count();
+        $imageCount = images::where('poster_name',$name)->count();
+        $postCount = post::where('poster_name',$name)->count();
+
+        $totalPostCount = $mediaCount + $imageCount + $postCount;
         return view('vitamin.userprofile',compact('userDetails','userVideos','userVideoComments',
-        'userImages','userImageComments','userPosts','userPostComments','Wshare','Tshare','Fshare'));
+        'userImages','userImageComments','userPosts','userPostComments','Wshare','Tshare','Fshare','totalPostCount'));
     }
 }

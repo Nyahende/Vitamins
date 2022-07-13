@@ -40,7 +40,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__wobble" src="{{asset('dist/img/vitaminlogo.png')}}" alt="Vitamin Logo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -63,7 +63,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{asset('dist/img/vitaminlogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Vitamin</span>
     </a>
 
@@ -151,7 +151,6 @@
                     <form class="the-chat-form" id="the-chat-form">
                       <div class="input-group">
                           @csrf
-                        <input type="hidden"  name="sreceiver" id="sreceiver" value="{{$receivername}}">
                         <input type="hidden"  name="receiver" id="receiver" value="{{$receivername}}">
                         <input type="hidden"  name="authusername" id="authusername" value="{{$authusername}}">
                         <input type="text" name="message" id="message" placeholder="Type Message ..." class="form-control">
@@ -233,6 +232,7 @@ $('.the-chat-form').submit(function(e){
 
     $value = $('#message').val();
     $receiver = $('#receiver').val();
+    $sender = $('#authusername').val();
     $.ajaxSetup({
         headers:{
             'X-CSRF-TOKEN':
@@ -240,15 +240,35 @@ $('.the-chat-form').submit(function(e){
         }
     });
 
-    $.ajax({
-            url:'{{route('sendtext')}}',
-            type:"post",
-            data:{'message':$value, 'receiver':$receiver},
-            success:function(response)
+    function sendNotification()
+    {
+
+        var sender = $('#authusername').val();
+        var name = $('#receiver').val();
+        
+        $.ajax({
+            type: "post",
+            url: '{{route('main')}}',
+            data: {sender},
+            success: function(data)
             {
-                $('.the-chat-form')[0].reset();
-                fetchtexts();
-            }      
+              console.log(data);
+            }
+        });
+    }
+    
+
+    $.ajax({
+        url:'{{route('sendtext')}}',
+        type:"post",
+        data:{'message':$value, 'receiver':$receiver},
+        success:function(response)
+        {
+            $('.the-chat-form')[0].reset();
+            fetchtexts();
+            sendNotification();
+            
+        }      
     }); 
     
     

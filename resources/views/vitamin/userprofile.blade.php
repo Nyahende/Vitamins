@@ -43,30 +43,7 @@
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-     
-    </ul>
+    
   </nav>
   <!-- /.navbar -->
 
@@ -197,11 +174,11 @@
                 <p class="text-muted text-center">{{$userDetails->status}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
+                  <!-- <li class="list-group-item">
                    <a href="{{route('chat',[$userDetails->name])}}"> <b>Inbox</b></a> 
-                  </li>
+                  </li> -->
                   <li class="list-group-item">
-                    <b>Posts</b> <a class="float-right">287</a>
+                    <b>Posts</b> <a class="float-right">{{$totalPostCount}}</a>
                   </li>
                 </ul>
               </div>

@@ -340,11 +340,11 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong>Developed and Maintained by:  <a href="">michaelnyahende8@gmail.com</a>.</strong>
+    
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
-    </div> -->
+      This site has been acive since <b>2022 July</b>
+    </div>
   </footer>
 </div>
 <!-- ./wrapper -->

@@ -23,6 +23,8 @@ class mainController extends Controller
     }
     public function firstpage()
     {
-        return view('vitamin.firstpage');
+        $movies = movie::take(5)->orderBy('id','desc')->get();
+        $songs = audio::take(4)->orderBy('id','desc')->get();
+        return view('vitamin.firstpage',compact('movies','songs'));
     }
 }

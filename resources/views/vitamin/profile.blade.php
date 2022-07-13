@@ -559,10 +559,11 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
+    <strong>Developed and Maintained by:  <a href="">michaelnyahende8@gmail.com</a>.</strong>
+    
+    <div class="float-right d-none d-sm-inline-block">
+      This site has been acive since <b>2022 July</b>
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

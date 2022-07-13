@@ -86,12 +86,12 @@ Route::get('searchtech',[techController::class,'searchtech']);
 Route::get('searchhistory',[historyController::class,'searchhistory']);
 Route::get('searchsport',[sportsController::class,'searchsport']);
 Route::get('searchfood',[foodController::class,'searchfood']);
+Route::get('chat/{name}',[liveChatController::class,'Chat'])->name('chat');
+Route::post('send-text',[liveChatController::class,'sendtext'])->name('sendtext');
+Route::get('fetch-texts/{name}',[liveChatController::class,'fetchtexts'])->name('fetchtexts');
 
 });
 
-Route::get('chat/{name}',[liveChatController::class,'Chat'])->name('chat');
 
-Route::post('send-text',[liveChatController::class,'sendtext'])->name('sendtext');
-Route::get('fetch-texts/{name}',[liveChatController::class,'fetchtexts'])->name('fetchtexts');
 Auth::routes();
 

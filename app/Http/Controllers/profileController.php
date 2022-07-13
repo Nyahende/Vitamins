@@ -11,6 +11,7 @@ use App\Models\post;
 use App\Models\videoComment;
 use App\Models\imageComment;
 use App\Models\postComment;
+use Share;
 
 class profileController extends Controller
 {
@@ -24,7 +25,15 @@ class profileController extends Controller
         $userMedia = media::where('poster_name',$username)->orderBy('id','desc')->get();
         $userImage = images::where('poster_name',$username)->orderBy('id','desc')->get();
         $userPost = post::where('poster_name',$username)->orderBy('id','desc')->get();
-        return view('vitamin.profile',compact('username','userId'),['userMedia'=>$userMedia,'userImage'=>$userImage,
+        $mediaCount = media::where('poster_name',$username)->count();
+        $imageCount = images::where('poster_name',$username)->count();
+        $postCount = post::where('poster_name',$username)->count();
+        $Wshare = Share::currentPage()->whatsapp();
+        $Tshare = Share::currentPage()->telegram();
+        $Fshare = Share::currentPage()->facebook();
+
+        $totalPostCount = $mediaCount + $imageCount + $postCount;
+        return view('vitamin.profile',compact('username','userId','totalPostCount','Wshare','Tshare','Fshare'),['userMedia'=>$userMedia,'userImage'=>$userImage,
         'userPost'=>$userPost,'videoComments'=>$videoComments,'imageComments'=>$imageComments,
         'postComments'=>$postComments]);
     }

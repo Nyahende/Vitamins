@@ -5,14 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\audio;
 use App\Models\musicVideo;
+use Share;
 
 class songsController extends Controller
 {
     public function songs()
     {
+        $Wshare = Share::currentPage()->whatsapp();
+        $Tshare = Share::currentPage()->telegram();
+        $Fshare = Share::currentPage()->facebook();
         $songs = audio::orderBy('id','desc')->get();
         $musicVideo = musicVideo::orderBy('id','desc')->get();
-        return view('vitamin.songs',compact('songs','musicVideo'));
+        return view('vitamin.songs',compact('songs','musicVideo','Wshare','Tshare','Fshare'));
     }
 
 

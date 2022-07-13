@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\history;
+use Share;
 
 class historyController extends Controller
 {
     public function history()
     {
+        $Wshare = Share::currentPage()->whatsapp();
+        $Tshare = Share::currentPage()->telegram();
+        $Fshare = Share::currentPage()->facebook();
         $history = history::orderBy('id','desc')->get();
-        return view('vitamin.history',compact('history'));
+        return view('vitamin.history',compact('history','Wshare','Tshare','Fshare'));
     }
 
     public function addHistory(Request $request)

@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\sport;
+use Share;
 
 class sportsController extends Controller
 {
     public function sports()
     {
+        $Wshare = Share::currentPage()->whatsapp();
+        $Tshare = Share::currentPage()->telegram();
+        $Fshare = Share::currentPage()->facebook();
         $sport = sport::orderBy('id','desc')->get();
-        return view('vitamin.sports',compact('sport'));
+        return view('vitamin.sports',compact('sport','Wshare','Tshare','Fshare'));
     }
 
     public function uploadSport(Request $request)

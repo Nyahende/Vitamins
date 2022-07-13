@@ -15,6 +15,9 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="{{asset('dist/img/vitaminlogo.png')}}" alt="VitaminLogo" height="60" width="60">
+  </div>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -46,8 +49,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
-     <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+     <a href="" class="brand-link">
+      <img src="{{asset('dist/img/vitaminlogo.png')}}" alt="Vitamin Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Vitamin</span>
     </a>
 
@@ -172,19 +175,10 @@
                 <p class="text-muted text-center">{{Auth::user()->status}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
+                  
                   <li class="list-group-item">
-                    <b>Followers</b> <a class="float-right">1,322</a>
+                    <b>Posts</b> <a class="float-right">{{$totalPostCount}}</a>
                   </li>
-                  <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Posts</b> <a class="float-right">287</a>
-                  </li>
-                 
 
                 </ul>
 
@@ -253,11 +247,13 @@
                        <source src="{{asset('/assets')}}/{{$item->file}}" type="video/mp4" style="width:100%;height:auto;">Your audio format is not supported</audio>
 
                       </div>
+                         
                       <p>
 
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm mr-2"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <a href="{{'deleteVideo/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
+                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}"" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}"" alt="" style="35px;height:35px;"></a>
+                         <a href="{{'deleteVideo/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
                         
                         <span class="float-right" id="video-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\videoComment::where('post_id',$item->id)->count();}})
@@ -347,10 +343,11 @@
 
                       </div>
                       <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <a href="{{'deleteImage/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
-                        <span class="float-right" id="images-float-right">
+                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}" alt="" style="35px;height:35px;"></a>
+                         <a href="{{'deleteImage/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
+                         <span class="float-right" id="images-float-right">
                             <i class="far fa-comments mr-1"></i> Comments({{$commentCount = \App\Models\imageComment::where('post_id',$item->id)->count();}})
                         </span>
                       </p>
@@ -364,7 +361,7 @@
                                <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
                               @else
                               <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$comment->sender_picture}}" alt="user image">
-
+                              @endif
                                <span class="username">
                                 <a href="{{route('userprofilename',[$comment->sender_name])}}">{{$comment->sender_name}}</a>
                               </span>
@@ -372,7 +369,6 @@
                             </div>
                             <p>
                             {{$comment->comment_body}} <br>
-                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                             <a href="{{'deleteImageComment/'.$comment->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
                             </p>
 
@@ -450,7 +446,6 @@
                       </p>
 
                       <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
                         <a href="{{'deletePost/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
                         <span class="float-right" id="posts-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\postComment::where('post_id',$item->id)->count();}})

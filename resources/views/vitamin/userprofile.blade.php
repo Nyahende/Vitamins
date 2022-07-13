@@ -15,6 +15,9 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="{{asset('dist/img/vitaminlogo.png')}}" alt="VitaminLogo" height="60" width="60">
+  </div>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -71,7 +74,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
      <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{asset('dist/img/vitaminlogo.png')}}" alt="Vitamin Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Vitamin</span>
     </a>
 
@@ -239,14 +242,15 @@
                       </div>
                       <!-- /.user-block -->
                       <div class="video-div" style="width:100%;height:auto;"> 
-                      <video controls class="video-controls" style="width:100%;height:auto;">
-                       <source src="{{asset('/assets')}}/{{$userVideos->file}}" type="video/mp4" style="width:100%;height:auto;">
-                       Your audio format is not supported</video>
-
+                        <video controls class="video-controls" style="width:100%;height:auto;">
+                        <source src="{{asset('/assets')}}/{{$userVideos->file}}" type="video/mp4" style="width:100%;height:auto;">
+                         Your audio format is not supported</video>
                       </div>
                       <p>
 
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}" alt="" style="35px;height:35px;"></a>
                         
                         <span class="float-right" id="video-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\videoComment::where('post_id',$userVideos->id)->count();}})
@@ -318,11 +322,13 @@
                       <!-- /.row -->
 
                       <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <span class="float-right" id="images-float-right">
-
+                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}"" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}"" alt="" style="35px;height:35px;"></a>
+                      
+                         <span class="float-right" id="images-float-right">
                             <i class="far fa-comments mr-1"></i> Comments({{$commentCount = \App\Models\imageComment::where('post_id',$userImages->id)->count();}})
-                        </span>
+                         </span>
                       </p>
                       <div class="images-comments-div" style="margin-top:20px;display:none;width:100%;height:400px;overflow-y:scroll;">
                       @foreach($userImageComments as $comment)
@@ -387,7 +393,9 @@
                       <!-- /.row -->
 
                       <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}"" alt="" style="50px;height:50px;"></a>
+                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}"" alt="" style="35px;height:35px;"></a>
                         <span class="float-right" id="posts-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\postComment::where('post_id',$userPosts->id)->count();}})
                         </span>
@@ -497,12 +505,12 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  <!-- <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.2.0
     </div>
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+  </footer> -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

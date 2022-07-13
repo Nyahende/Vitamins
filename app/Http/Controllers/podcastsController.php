@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\podcast;
+use Share;
 
 class podcastsController extends Controller
 {
     public function podcasts()
     {
+        $Wshare = Share::currentPage()->whatsapp();
+        $Tshare = Share::currentPage()->telegram();
+        $Fshare = Share::currentPage()->facebook();
 
         $podcast = podcast::orderBy('id','desc')->get();
-        return view('vitamin.podcasts',compact('podcast'));
+        return view('vitamin.podcasts',compact('podcast','Wshare','Tshare','Fshare'));
     }
 
 

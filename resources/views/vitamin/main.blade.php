@@ -19,7 +19,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__wobble" src="{{asset('dist/img/vitaminlogo.png')}}" alt="VitaminLogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -53,7 +53,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
      <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{asset('dist/img/vitaminlogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Vitamin</span>
     </a>
 
@@ -156,10 +156,7 @@
               <div class="info-box-content">
                 <a href="{{route('profile')}}">
                 <span class="info-box-text">Profile</span>
-                <span class="info-box-number">
-                  10
-                  <small>% Complete</small>
-                </span>
+                
                 </a>
               </div>
               <!-- /.info-box-content -->
@@ -174,7 +171,7 @@
               <a href="{{route('podcasts')}}">
               <div class="info-box-content">
                 <span class="info-box-text">PodCasts</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-number">{{$podcastCount}}</span>
               </div>
               </a>
 
@@ -192,7 +189,7 @@
               <a href="{{route('book')}}">
               <div class="info-box-content">
                 <span class="info-box-text">Books</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-number">{{$bookCount}}</span>
               </div>
               </a>
               <!-- /.info-box-content -->
@@ -206,7 +203,7 @@
               <a href="{{route('members')}}">
               <div class="info-box-content">
                 <span class="info-box-text">Users</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-number">{{$usersCount}}</span>
               </div>
               </a>
               <!-- /.info-box-content -->
@@ -343,11 +340,11 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <!-- <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0
-    </div>
+    </div> -->
   </footer>
 </div>
 <!-- ./wrapper -->

@@ -7,15 +7,19 @@ use App\Models\User;
 use App\Models\book;
 use App\Models\bookReview;
 use Auth;
+use Share;
 
 class bookController extends Controller
 {
     public function book()
     {
 
+        $Wshare = Share::currentPage()->whatsapp();
+        $Tshare = Share::currentPage()->telegram();
+        $Fshare = Share::currentPage()->facebook();
         $book = book::orderBy('id','desc')->get();
         $bookReviews = bookReview::orderBy('id','desc')->get();
-        return view('vitamin.book',compact('bookReviews'),['book'=>$book]);
+        return view('vitamin.book',compact('bookReviews','Wshare','Tshare','Fshare'),['book'=>$book]);
     }
 
    public function addbook(Request $request)

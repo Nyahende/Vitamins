@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tech;
+use Share;
 
 class techController extends Controller
 {
     public function technology()
     {
+        $Wshare = Share::currentPage()->whatsapp();
+        $Tshare = Share::currentPage()->telegram();
+        $Fshare = Share::currentPage()->facebook();
         $tech = tech::orderBy('id','desc')->get();
-    return view('vitamin.technology',compact('tech'));
+    return view('vitamin.technology',compact('tech','Wshare','Tshare','Fshare'));
     }
 
     public function uploadTech(Request $request)

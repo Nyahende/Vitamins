@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\food;
+use Share;
 
 class foodController extends Controller
 {
     public function food()
     {
+        $Wshare = Share::currentPage()->whatsapp();
+        $Tshare = Share::currentPage()->telegram();
+        $Fshare = Share::currentPage()->facebook();
         $food = food::orderBy('id','desc')->get();
-        return view('vitamin.food',compact('food'));
+        return view('vitamin.food',compact('food','Wshare','Tshare','Fshare'));
     }
 
 

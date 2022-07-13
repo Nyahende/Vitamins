@@ -290,7 +290,7 @@
                         @csrf
                         <input  type="hidden"  value="{{$item->id}}" name="postId">
                         <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="profilePicture">
-                        <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
+                        <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody" required>
                         <button type="submit" class="input-group-text" >Send</button>
 
                       </form>
@@ -312,7 +312,7 @@
                         <div class="form-group">
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
+                              <input type="file" class="custom-file-input" id="exampleInputFile" name="file" required>
                               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                             </div>
                             <div class="input-group-append">
@@ -382,7 +382,7 @@
                         @csrf
                       <input  type="hidden"  value="{{$item->id}}" name="postId">
                       <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
+                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody" required>
                       <button type="submit" class="input-group-text" >Send</button>
 
                       </form>
@@ -406,7 +406,7 @@
                         @csrf
                         <div class="card-body">
                           <div class="form-group">
-                          <textarea class="form-control" rows="3" placeholder="Type Your Post" name="post"></textarea>
+                          <textarea class="form-control" rows="3" placeholder="Type Your Post" name="post" required></textarea>
                           </div>
                           
                           <div class="form-group">
@@ -486,7 +486,7 @@
                           @csrf
                         <input  type="hidden"  value="{{$item->id}}" name="postId">
                         <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
-                        <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
+                        <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody" required>
                         <button type="submit" class="input-group-text" >Send</button>
 
                       </form>

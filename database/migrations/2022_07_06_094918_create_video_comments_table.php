@@ -17,7 +17,7 @@ class CreateVideoCommentsTable extends Migration
             $table->id();
             $table->integer('post_id');
             $table->text('sender_name');
-            $table->text('sender_picture');
+            $table->text('sender_picture')->nullable();
             $table->text('comment_body');
             $table->timestamps();
         });

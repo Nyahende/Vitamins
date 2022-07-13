@@ -264,7 +264,11 @@
                       <form action="{{route('Profilecomment')}}" method="post">
                         @csrf
                       <input  type="hidden"  value="{{$userVideos->id}}" name="postId">
-                      <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="profilePicture">
+                        @if(Auth::user()->profile_picture)
+                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
+                        @else
+                        <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
+                        @endif
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                       <button type="submit" class="input-group-text" >Send</button>
 
@@ -336,7 +340,11 @@
                       <form action="{{route('ProfileImageComment')}}" method="post">
                         @csrf
                       <input  type="hidden"  value="{{$userImages->id}}" name="postId">
-                      <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="profilePicture">
+                        @if(Auth::user()->profile_picture)
+                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
+                        @else
+                        <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
+                        @endif
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                       <button type="submit" class="input-group-text" >Send</button>
 
@@ -405,7 +413,11 @@
                       <form action="{{route('ProfilePostComment')}}" method="post">
                         @csrf
                       <input  type="hidden"  value="{{$userPosts->id}}" name="postId">
-                      <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="profilePicture">
+                        @if(Auth::user()->profile_picture)
+                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
+                        @else
+                        <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
+                        @endif
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                       <button type="submit" class="input-group-text" >Send</button>
 

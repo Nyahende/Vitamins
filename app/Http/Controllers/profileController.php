@@ -166,7 +166,7 @@ class profileController extends Controller
 
         $pComments = new postComment;
         $pComments -> post_id = $request->postId;
-        $vComments -> sender_picture = $request->profilePicture;
+        $pComments -> sender_picture = $request->profilePicture;
         $pComments -> comment_body = $request->commentBody;
         $pComments -> sender_name = Auth::user()->name;
         

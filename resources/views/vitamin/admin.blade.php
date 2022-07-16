@@ -153,7 +153,7 @@
               </div>
 
 
-              <div class="card card-success" >
+                  <div class="card card-success" >
                         
                         <form action="{{route('AdminMovies')}}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -178,7 +178,7 @@
                         </form>
                       
                         </div>
-              </div>
+                  </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">

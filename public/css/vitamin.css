@@ -38,3 +38,13 @@
     color:gray;
 }
 
+#checked-time{
+    background-color: green!important;
+    font-style: italic;
+}
+#checked-message{
+    text-decoration: line-through;
+}
+#unchecked-time{
+    background-color: orangered!important;
+}

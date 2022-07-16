@@ -53,4 +53,15 @@ $(document).ready(function(){
 
     });
 
+    $('#add-activity').click(function(){
+
+        $('#activity-form').slideToggle();
+
+    });
+
+    $('#upload-activity-btn').click(function(){
+
+        $('#activity-form').slideUp();
+
+    });
 });

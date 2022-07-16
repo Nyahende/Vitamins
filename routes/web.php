@@ -15,6 +15,7 @@ use App\Http\Controllers\membersController;
 use App\Http\Controllers\userProfileController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\liveChatController;
+use App\Http\Controllers\activityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +90,14 @@ Route::get('searchfood',[foodController::class,'searchfood']);
 Route::get('chat/{name}',[liveChatController::class,'Chat'])->name('chat');
 Route::post('send-text',[liveChatController::class,'sendtext'])->name('sendtext');
 Route::get('fetch-texts/{name}',[liveChatController::class,'fetchtexts'])->name('fetchtexts');
+
+Route::post('add-activity',[activityController::class,'addActivity'])->name('addActivity');
+Route::get('fetch-activity/{name}',[activityController::class,'fetchActivity'])->name('fetchactivity');
+Route::post('checked/{id}',[activityController::class,'checked'])->name('checked');
+Route::get('deleteSingle/{id}',[activityController::class,'deleteSingle'])->name('deleteSingleActivity');
+Route::get('deleteAll/{id}',[activityController::class,'deleteAll'])->name('deleteAllActivities');
+
+
 
 });
 

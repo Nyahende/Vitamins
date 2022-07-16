@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{csrf_token()}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vitamins | Homepage</title>
 
@@ -9,10 +10,36 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/vitamin.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+
+  <!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+  <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('js/activity.js')}}"></script>
+  <script src="{{asset('/js/formslide.js')}}"></script>
+  <!-- Bootstrap -->
+  <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <!-- overlayScrollbars -->
+  <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{asset('dist/js/adminlte.js')}}"></script>
+
+  <!-- PAGE PLUGINS -->
+  <!-- jQuery Mapael -->
+  <script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
+  <script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
+  <script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
+  <script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+  <!-- ChartJS -->
+
+  <!-- AdminLTE for demo purposes -->
+  <script src="{{asset('dist/js/demo.js')}}"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -304,10 +331,10 @@
                 @foreach($songs as $item)
                   <li class="item">
                     <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
+                      <img src="{{asset('dist/img/user.jpg')}}" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">{{$item->artist_name}}
+                      <a href="" class="product-title">{{$item->artist_name}}
                       <span class="product-description">
                       {{$item->song_name}}
                       </span>
@@ -329,6 +356,90 @@
           </div>
           <!-- /.col -->
         </div>
+
+        
+      <div class="card card-success" style="display:none;" id="activity-form">
+                    
+      <form action="{{route('addActivity')}}" method="post" id="activity-form">
+            @csrf
+        <div class="card-body">
+            <div class="row">
+            <div class="col-5">
+                <input type="text" id="activity" class="form-control" placeholder="Activity" style="margin:5px" name="activity" required autofocus>
+            </div>
+            <div class="col-5">
+                <input type="text" id="duration" class="form-control" placeholder="Duration..Optional" style="margin:5px" name="duration">
+            </div>
+            <div class="col-5">
+                <input type="hidden" id="authusername" class="form-control" style="margin:5px" value="{{Auth::user()->name}}" name="authusername">
+            </div>
+            
+          <button type="submit" class="btn  btn-primary btn-sm" id="upload-activity-btn" style="margin:10;">Upload </button>
+      
+        </div>
+        </div>
+        
+      </form>
+
+      </div>
+     
+      <div class="card-footer clearfix">
+        <button type="button" class="btn btn-primary float-right" id="add-activity"><i class="fas fa-plus"></i> Add Activity</button>
+      </div>
+        <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  To Do List
+                </h3>
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <ul class="todo-list">
+                  
+                @foreach($activity as $activity)
+
+                <li>
+                  @if($activity->checked == "checked")
+                  <div style="float:right">
+                      <a href="{{route('deleteSingleActivity',[$activity->id])}}" >
+                      <i class="fas fa-times"></i>
+                      </a>
+                    </div>
+                  <input type="checkbox" name="" id="" checked>
+                  <span class="text" id="checked-message">{{$activity->Body}}</span><br>
+                  <small class="badge badge-primary" id="checked-time"><i class="far fa-clock"></i>
+                  {{$activity->duration}}</small>
+                 
+                  @else
+                  <div style="float:right">
+                  <a href="{{route('deleteSingleActivity',[$activity->id])}}">
+                  <i class="fas fa-times"></i>
+                  </a>
+                  </div>
+                  <input type="checkbox" name="" id="">
+                  <input type="hidden" name="itemid" id="itemid" >
+                  <span class="text" id="message">{{$activity->Body}}</span><br>
+                  <small class="badge badge-primary" id="unchecked-time"><i class="far fa-clock"></i>
+                  {{$activity->duration}}</small>
+                  <form action="{{route('checked',[$activity->id])}}" method="post">
+                      @csrf
+                    <input type="hidden" name="checked" value="checked" >
+                    <Button type="submit">Check</Button>
+                    
+                  </form>
+                  @endif
+                </li>
+                <hr>
+
+                @endforeach
+                <button><a href="{{route('deleteAllActivities',[$Authid])}}"> Delete All</a></button>
+
+                </ul>
+              </div>
+              <!-- /.card-body -->
+              
+            </div>
         <!-- /.row -->
       </div><!--/. container-fluid -->
     </section>
@@ -353,28 +464,11 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- overlayScrollbars -->
-<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
+<script>
+  document.getElementById('disabled').disabled = true;
+  document.getElementById('checked').disabled = true;
+</script>
 
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
-<script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
-<!-- ChartJS -->
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
 
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
 </body>
 </html>

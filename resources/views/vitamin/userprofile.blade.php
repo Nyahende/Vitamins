@@ -225,7 +225,6 @@
                       </div>
                       <p>
 
-                         {{$SocialShare}}
                         
                         <span class="float-right" id="video-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\videoComment::where('post_id',$userVideos->id)->count();}})
@@ -299,7 +298,6 @@
 
                       </div>
                       <!-- /.row -->
-                      {{$SocialShare}}
                       <p>
                       
                          <span class="float-right" id="images-float-right">
@@ -373,7 +371,6 @@
                       <!-- /.row -->
 
                       <p>
-                      {{$SocialShare}}
                         <span class="float-right" id="posts-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\postComment::where('post_id',$userPosts->id)->count();}})
                         </span>

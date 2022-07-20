@@ -211,12 +211,12 @@
                       @csrf
                       <div class="card-body">
                         <div class="form-group">
-                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add Caption" name="caption">
+                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add Caption" name="caption" required>
                         </div>
                         <div class="form-group">
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
+                              <input type="file" class="custom-file-input" id="exampleInputFile" name="file" required>
                               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                             </div>
                             <div class="input-group-append">
@@ -311,7 +311,7 @@
                       @csrf
                       <div class="card-body">
                         <div class="form-group">
-                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add Caption" name="caption">
+                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add Caption" name="caption" required>
                         </div>
                         <div class="form-group">
                           <div class="input-group">

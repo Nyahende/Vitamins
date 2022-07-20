@@ -288,11 +288,11 @@
                       @endforeach
                       </div>
 
-                      <form action="{{route('Profilecomment')}}" method="post">
+                      <form action="{{route('Profilecomment')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input  type="hidden"  value="{{$item->id}}" name="postId">
                         @if(Auth::user()->profile_picture)
-                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
+                        <input  type="hidden"  value="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" name="posterPicture">
                         @else
                         <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
                         @endif
@@ -381,11 +381,11 @@
                       @endforeach
                       </div>
 
-                      <form action="{{route('ProfileImageComment')}}" method="post">
+                      <form action="{{route('ProfileImageComment')}}" method="post"  enctype="multipart/form-data">
                         @csrf
                       <input  type="hidden"  value="{{$item->id}}" name="postId">
                         @if(Auth::user()->profile_picture)
-                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
+                        <input  type="hidden"  value="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" name="posterPicture">
                         @else
                         <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
                         @endif
@@ -493,7 +493,7 @@
                           @csrf
                         <input  type="hidden"  value="{{$item->id}}" name="postId">
                         @if(Auth::user()->profile_picture)
-                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
+                        <input  type="hidden"  value="{{asset('/assets')}}/{{Auth::user()->profile_picture}}" name="posterPicture">
                         @else
                         <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
                         @endif

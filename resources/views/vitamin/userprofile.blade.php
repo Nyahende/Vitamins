@@ -299,11 +299,8 @@
 
                       </div>
                       <!-- /.row -->
-
+                      {{$SocialShare}}
                       <p>
-                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
-                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}"" alt="" style="50px;height:50px;"></a>
-                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}"" alt="" style="35px;height:35px;"></a>
                       
                          <span class="float-right" id="images-float-right">
                             <i class="far fa-comments mr-1"></i> Comments({{$commentCount = \App\Models\imageComment::where('post_id',$userImages->id)->count();}})
@@ -376,9 +373,7 @@
                       <!-- /.row -->
 
                       <p>
-                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
-                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}"" alt="" style="50px;height:50px;"></a>
-                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}"" alt="" style="35px;height:35px;"></a>
+                      {{$SocialShare}}
                         <span class="float-right" id="posts-float-right">
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\postComment::where('post_id',$userPosts->id)->count();}})
                         </span>

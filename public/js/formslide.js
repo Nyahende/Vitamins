@@ -64,4 +64,18 @@ $(document).ready(function(){
         $('#activity-form').slideUp();
 
     });
+
+
+    $('#delete-account').click(function(){
+
+        $('.are-you-sure').slideToggle();
+        $('#delete-account').hide();
+
+    });
+    $('#cancel').click(function(){
+
+        $('.are-you-sure').slideUp();
+        $('#delete-account').show();
+
+    });
 });

@@ -52,6 +52,14 @@ class profileController extends Controller
         $media->delete($id);
         return redirect()->back();
     }
+
+    
+    public function deleteUser($id)
+    {
+        $user=User::find($id);
+        $user->delete($id);
+        return redirect('/');
+    }
     public function deleteVideoComment($id)
     {
         $videoComment=videoComment::find($id);

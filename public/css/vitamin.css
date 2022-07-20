@@ -48,3 +48,10 @@
 #unchecked-time{
     background-color: orangered!important;
 }
+#delete-account:hover{
+background-color:black;
+color:white;
+}
+.are-you-sure{
+    display:none;
+}

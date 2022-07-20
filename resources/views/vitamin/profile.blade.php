@@ -145,7 +145,12 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+    <div class="are-you-sure">
+      <h3>Are You Sure you want to delete Your Account?</h3>
+      <button><a href="{{'deleteUser/'.Auth::user()->id}}"> Yes</a></button>
+      <button id="cancel">Cancel</button>
+    </div>
+<button id="delete-account">Delete Account</button>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -250,9 +255,6 @@
                          
                       <p>
 
-                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
-                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}"" alt="" style="50px;height:50px;"></a>
-                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}"" alt="" style="35px;height:35px;"></a>
                          <a href="{{'deleteVideo/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
                         
                         <span class="float-right" id="video-float-right">
@@ -347,9 +349,6 @@
 
                       </div>
                       <p>
-                         <a href="{{$Wshare}}"><img src="{{asset('/dist/img/whatsapp.jpeg')}}" alt="" style="50px;height:50px;"></a>
-                         <a href="{{$Tshare}}"><img src="{{asset('/dist/img/telegram.jpeg')}}" alt="" style="50px;height:50px;"></a>
-                         <a href="{{$Fshare}}"><img src="{{asset('/dist/img/fabicon.png')}}" alt="" style="35px;height:35px;"></a>
                          <a href="{{'deleteImage/'.$item->id}}" class="link-black text-sm mr-2" ><i class="fas fa-trash mr-1"></i> Delete</a>
                          <span class="float-right" id="images-float-right">
                             <i class="far fa-comments mr-1"></i> Comments({{$commentCount = \App\Models\imageComment::where('post_id',$item->id)->count();}})

@@ -16,9 +16,15 @@ class userProfileController extends Controller
 {
     public function userprofile($name)
     {
-        $Wshare = Share::currentPage()->whatsapp();
-        $Tshare = Share::currentPage()->telegram();
-        $Fshare = Share::currentPage()->facebook();
+        $SocialShare = \Share::page(
+            'http://www.vitamin360.herokuapp.com/userprofile/$name'
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->Whatsapp();
+        
         $userDetails = User::where('name',$name)->get();
         $userVideos = media::where('poster_name',$name)->get();
         $userImages = images::where('poster_name',$name)->get();
@@ -32,6 +38,6 @@ class userProfileController extends Controller
 
         $totalPostCount = $mediaCount + $imageCount + $postCount;
         return view('vitamin.userprofile',compact('userDetails','userVideos','userVideoComments',
-        'userImages','userImageComments','userPosts','userPostComments','Wshare','Tshare','Fshare','totalPostCount'));
+        'userImages','userImageComments','userPosts','userPostComments','SocialShare','totalPostCount'));
     }
 }

@@ -96,6 +96,7 @@ Route::get('fetch-activity/{name}',[activityController::class,'fetchActivity'])-
 Route::post('checked/{id}',[activityController::class,'checked'])->name('checked');
 Route::get('deleteSingle/{id}',[activityController::class,'deleteSingle'])->name('deleteSingleActivity');
 Route::get('deleteAll/{id}',[activityController::class,'deleteAll'])->name('deleteAllActivities');
+Route::get('deleteUser/{id}',[profileController::class,'deleteUser']);
 
 
 

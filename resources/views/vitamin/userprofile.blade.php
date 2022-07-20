@@ -292,8 +292,8 @@
                         <span class="description">{{$userImages->caption}}</span>
                       </div>
                       <!-- /.user-block -->
-                      <div class="row mb-3" style="width:100%;" >
-                      <img class="img-fluid" src="{{asset('/assets')}}/{{$userImages->file}}" alt="Photo" style="width:100%;height:auto;">
+                      <div class="row mb-3" style="" >
+                      <img class="img-fluid" src="{{asset('/assets')}}/{{$userImages->file}}" alt="Photo" style="width:100%;height:100%;">
 
 
                       </div>

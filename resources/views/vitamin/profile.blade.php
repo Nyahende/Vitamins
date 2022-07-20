@@ -344,8 +344,8 @@
                         <span class="description">{{$item->caption}}</span>
                       </div>
                       <!-- /.user-block -->
-                      <div class="row mb-3" style="width:100%;" >
-                      <img class="img-fluid" src="{{asset('/assets')}}/{{$item->file}}" alt="Photo" style="width:100%;height:auto;">
+                      <div class="row mb-3" style="" >
+                      <img class="img-fluid" src="{{asset('/assets')}}/{{$item->file}}" alt="Photo" style="width:100%;height:100%;">
 
                       </div>
                       <p>

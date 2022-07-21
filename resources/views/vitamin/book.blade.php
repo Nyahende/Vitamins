@@ -221,7 +221,7 @@
     <strong>Developed and Maintained by:  <a href="">michaelnyahende8@gmail.com</a>.</strong>
     
     <div class="float-right d-none d-sm-inline-block">
-      This site has been acive since <b>2022 July</b>
+    This site has been active since <b>July 2022 </b>
     </div>
   </footer>
 

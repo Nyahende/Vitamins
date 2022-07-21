@@ -205,7 +205,6 @@
                     @foreach($userVideos as $userVideos)
                     <div class="post">
 
-
                     <div class="user-block">
                       @if($userDetails->profile_picture)
                         <img class="img-circle img-bordered-sm" src="{{asset('/assets')}}/{{$userDetails->profile_picture}}" alt="user image">

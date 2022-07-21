@@ -139,7 +139,7 @@ class profileController extends Controller
 
         $query = $media->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('message','Your Video is being uploaded, Wait a Minute..');
     }
 
     public function ProfileComment(Request $request)

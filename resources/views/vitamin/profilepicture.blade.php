@@ -157,8 +157,7 @@
                 <input type="hidden" name="id" value="{{$editProfilePicture['id']}}">
                     <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                     <input type="file" class="form-control" placeholder="Choose File" style="margin:5px" name="file" >
                     </div>
                     <div class="input-group-append">
                         <button type="submit" class="input-group-text" id="upload-media-btn">Upload</button>
@@ -183,7 +182,7 @@
     <strong>Developed and Maintained by:  <a href="">michaelnyahende8@gmail.com</a>.</strong>
     
     <div class="float-right d-none d-sm-inline-block">
-      This site has been acive since <b>2022 July</b>
+    This site has been active since <b>July 2022 </b>
     </div>
   </footer>
 

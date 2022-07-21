@@ -195,6 +195,7 @@
             
             <!-- /.card -->
           </div>
+         
           <!-- /.col -->
           <div class="col-md-9">
             <div class="card">
@@ -209,8 +210,13 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="video">
-                  <button type="button" class="btn btn-success" style="margin:10px;" id="add-media-btn" >Add Media</button>
-
+                  @if(Session::get('message'))
+                    <div>
+                        <h1 style="color:red;font-weight:lighter;font-size:20px;">{{Session::get('message')}}</h1>
+                    </div>
+                  @endif
+                  <button type="button" class="btn btn-success" style="margin:10px;" id="add-media-btn" >Add Video</button>
+                 
                   <div class="add-media-div" style="display:none">
                     <form action="{{route('ProfileMediaRoute')}}" method="post" enctype="multipart/form-data">
                       @csrf
@@ -221,8 +227,7 @@
                         <div class="form-group">
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile" name="file" required>
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                <input type="file" class="form-control" placeholder="Choose File" style="margin:5px" name="file" >
                             </div>
                             <div class="input-group-append">
                               <button type="submit" class="input-group-text" id="upload-media-btn">Upload</button>
@@ -305,7 +310,7 @@
 
                     </div>
 
-                  <div class="active tab-pane" id="images">
+                  <div class="tab-pane" id="images">
                   <button type="button" class="btn btn-success" style="margin:10px;" id="add-image-btn" >Add Image</button>
 
                   <div class="add-image-div" style="display:none">
@@ -317,10 +322,9 @@
                         </div>
                         <div class="form-group">
                           <div class="input-group">
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile" name="file" required>
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
+                          <div class="custom-file">
+                              <input type="file" class="form-control" placeholder="Choose File" style="margin:5px" name="file" >
+                          </div>
                             <div class="input-group-append">
                               <button type="submit" class="input-group-text" id="upload-media-btn">Upload</button>
                             </div>
@@ -573,7 +577,7 @@
     <strong>Developed and Maintained by:  <a href="">michaelnyahende8@gmail.com</a>.</strong>
     
     <div class="float-right d-none d-sm-inline-block">
-      This site has been acive since <b>2022 July</b>
+      This site has been active since <b>July 2022 </b>
     </div>
   </footer>
 
@@ -594,5 +598,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
 <script src="{{asset('/js/formslide.js')}}"></script>
+
 </body>
 </html>

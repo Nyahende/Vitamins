@@ -51,7 +51,7 @@ Route::get('admin',[adminController::class,'admin']);
 Route::post('add-media',[ProfileController::class,'profileMedia'])->name('ProfileMediaRoute');
 Route::post('add-image',[ProfileController::class,'profileImage'])->name('ProfileImageRoute');
 Route::post('add-post',[ProfileController::class,'ProfilePost'])->name('ProfilePostRoute');
-Route::get('deleteVideo/{id}',[ProfileController::class,'deleteVideo']);
+Route::get('deleteVideo/{id}',[ProfileController::class,'deleteVideo'])->name('deleteVideo');
 Route::get('deleteImage/{id}',[ProfileController::class,'deleteImage']);
 Route::get('deletePost/{id}',[ProfileController::class,'deletePost']);
 Route::get('deleteVideoComment/{id}',[ProfileController::class,'deleteVideoComment']);

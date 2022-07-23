@@ -199,7 +199,11 @@
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
-
+                @if(Session::get('profilePicture'))
+                  <div>
+                      <h1 style="color:red;font-size:20px;">{{Session::get('profilePicture')}}</h1>
+                  </div>
+                @endif
                   <div class="active tab-pane" id="videos">
 
                     @foreach($userVideos as $userVideos)
@@ -229,7 +233,7 @@
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\videoComment::where('post_id',$userVideos->id)->count();}})
                         </span>
                       </p>
-                      <div class="videos-comments-div" style="margin-top:20px;display:none;width:100%;height:400px;overflow-y:scroll;">
+                      <div class="videos-comments-div" style="margin-top:20px;width:100%;max-height:400px;overflow-y:scroll;">
                     
                       @foreach($userVideoComments as $comment)
 
@@ -257,14 +261,9 @@
                       </div>
 
 
-                      <form action="{{route('Profilecomment')}}" method="post">
+                      <form action="{{route('Profilecomment')}}" method="post" enctype="multipart/form-data">
                         @csrf
                       <input  type="hidden"  value="{{$userVideos->id}}" name="postId">
-                        @if(Auth::user()->profile_picture)
-                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
-                        @else
-                        <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
-                        @endif
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                       <button type="submit" class="input-group-text" >Send</button>
 
@@ -303,7 +302,7 @@
                             <i class="far fa-comments mr-1"></i> Comments({{$commentCount = \App\Models\imageComment::where('post_id',$userImages->id)->count();}})
                          </span>
                       </p>
-                      <div class="images-comments-div" style="margin-top:20px;display:none;width:100%;height:400px;overflow-y:scroll;">
+                      <div class="images-comments-div" style="margin-top:20px;width:100%;max-height:300px;overflow-y:scroll;">
                       @foreach($userImageComments as $comment)
 
                          @if($comment->post_id == $userImages->id)
@@ -332,11 +331,6 @@
                       <form action="{{route('ProfileImageComment')}}" method="post">
                         @csrf
                       <input  type="hidden"  value="{{$userImages->id}}" name="postId">
-                        @if(Auth::user()->profile_picture)
-                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
-                        @else
-                        <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
-                        @endif
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                       <button type="submit" class="input-group-text" >Send</button>
 
@@ -374,7 +368,7 @@
                             <i class="far fa-comments mr-1"></i> Comments ({{$commentCount = \App\Models\postComment::where('post_id',$userPosts->id)->count();}})
                         </span>
                       </p>
-                      <div class="posts-comments-div" style="margin-top:20px;display:none;width:100%;height:400px;overflow-y:scroll;">
+                      <div class="posts-comments-div" style="margin-top:20px;width:100%;max-height:400px;overflow-y:scroll;">
                       @foreach($userPostComments as $comment)
 
                          @if($comment->post_id == $userPosts->id)
@@ -402,11 +396,6 @@
                       <form action="{{route('ProfilePostComment')}}" method="post">
                         @csrf
                       <input  type="hidden"  value="{{$userPosts->id}}" name="postId">
-                        @if(Auth::user()->profile_picture)
-                        <input  type="hidden"  value="{{Auth::user()->profile_picture}}" name="posterPicture">
-                        @else
-                        <input  type="hidden"  value="{{asset('/dist/img/user.jpg')}}" name="posterPicture">
-                        @endif
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment" name="commentBody">
                       <button type="submit" class="input-group-text" >Send</button>
 

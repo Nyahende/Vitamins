@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{csrf_token()}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vitamin | Profile</title>
 
@@ -48,7 +49,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
      <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{asset('dist/img/vitaminlogo.png')}}" alt="Vitamin Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Vitamin</span>
     </a>
 
@@ -149,7 +150,7 @@
         <div class="row">
          
         <div class="add-media-div">
-            <form action="{{route('ProfilePictureRoute')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('ProfilePictureRoute')}}" method="post" enctype="multipart/form-data"> 
                 @csrf
                 <div class="card-body">
                 
@@ -157,7 +158,7 @@
                 <input type="hidden" name="id" value="{{$editProfilePicture['id']}}">
                     <div class="input-group">
                     <div class="custom-file">
-                     <input type="file" class="form-control" placeholder="Choose File" style="margin:5px" name="file" >
+                     <input type="file" class="form-control" placeholder="Choose File" style="margin:5px" name="file">
                     </div>
                     <div class="input-group-append">
                         <button type="submit" class="input-group-text" id="upload-media-btn">Upload</button>
@@ -203,6 +204,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
 <script src="{{asset('/js/formslide.js')}}"></script>
+
 @else
 
 <div class="sorry" style="text-align:center;font-size:25px;margin-top:200px;">

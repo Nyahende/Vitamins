@@ -29,11 +29,6 @@ $(document).ready(function(){
         $('.add-movie-div').slideUp();
     });
 
-    $('#video-float-right').click(function(){
-
-        $('.videos-comments-div').slideToggle();
-
-    });
 
     $('#read-review-btn').click(function(){
 
@@ -41,17 +36,6 @@ $(document).ready(function(){
 
     });
 
-    $('#images-float-right').click(function(){
-
-        $('.images-comments-div').slideToggle();
-
-    });
-
-    $('#posts-float-right').click(function(){
-
-        $('.posts-comments-div').slideToggle();
-
-    });
 
     $('#add-activity').click(function(){
 

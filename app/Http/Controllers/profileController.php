@@ -108,81 +108,9 @@ class profileController extends Controller
         return redirect('profile');
     }
 
-    public function editProfilePicture($id){
+   
 
-        $editProfilePicture = User::find($id);
-      
-        return view('vitamin.profilepicture',['editProfilePicture'=>$editProfilePicture],compact('id'));
-    }
-
-
-    public function ProfilePictureRoute(Request $request){
-        $profilePicture=User::find($request->id);
-        $file=$request->file;
-        $filename=time().'.'.$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
-        $profilePicture->profile_picture=$filename;
-        $profilePicture->save();
-        return redirect('profile');
-    }
-
-    public function ProfileMedia(Request $request)
-    {
-
-        $media = new media;
-        $media -> caption = $request->caption;
-        $media -> poster_name = Auth::user()->name;
-        $file=$request->file;
-        $filename=time().'.'.$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
-        $media->file=$filename;
-
-        $query = $media->save();
-
-        return redirect()->back()->with('message','Your Video is being uploaded, Wait a Minute..');
-    }
-
-    public function ProfileComment(Request $request)
-    {
-
-        $vComments = new videoComment;
-        $vComments -> post_id = $request->postId;
-        
-        $vComments->sender_picture=Auth::user()->profile_picture;
-        $vComments -> comment_body = $request->commentBody;
-        $vComments -> sender_name = Auth::user()->name;
-        
-        $query = $vComments->save();
-
-        return redirect()->back();
-    }
-    public function ProfileImageComment(Request $request)
-    {
-
-        $vComments = new imageComment;
-        $vComments -> post_id = $request->postId;
-        $vComments->sender_picture=Auth::user()->profile_picture;
-        $vComments -> comment_body = $request->commentBody;
-        $vComments -> sender_name = Auth::user()->name;
-        
-        $query = $vComments->save();
-
-        return redirect()->back();
-    }
-
-    public function ProfilePostComment(Request $request)
-    {
-
-        $pComments = new postComment;
-        $pComments -> post_id = $request->postId;
-        $pComments -> sender_picture=Auth::user()->profile_picture;
-        $pComments -> comment_body = $request->commentBody;
-        $pComments -> sender_name = Auth::user()->name;
-        
-        $query = $pComments->save();
-
-        return redirect()->back();
-    }
+   
     public function ProfileImage(Request $request)
     {
 
@@ -208,4 +136,6 @@ class profileController extends Controller
 
         return redirect()->back();
     }
+
+    
 }

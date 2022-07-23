@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mainController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\profilePictureController;
 use App\Http\Controllers\podcastsController;
 use App\Http\Controllers\bookController;
 use App\Http\Controllers\songsController;
@@ -16,6 +17,8 @@ use App\Http\Controllers\userProfileController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\liveChatController;
 use App\Http\Controllers\activityController;
+use App\Http\Controllers\videoController;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +37,7 @@ Route::group(['middleware'=>['auth']], function(){
 
 Route::get('homepage',[mainController::class,'main'])->name('main');
 Route::get('profile',[profileController::class,'profile'])->name('profile');
-Route::get('editProfilePicture/{id}',[profileController::class,'editProfilePicture'])->name('editProfilePicture');
+Route::get('editProfilePicture/{userId}',[profilePictureController::class,'editProfilePicture'])->name('editProfilePicture');
 Route::get('podcasts',[podcastsController::class,'podcasts'])->name('podcasts');
 Route::get('book',[bookController::class,'book'])->name('book');
 Route::get('songs',[songsController::class,'songs'])->name('songs');
@@ -48,7 +51,7 @@ Route::get('userprofile/{name}',[userProfileController::class,'userprofile'])->n
 Route::get('editabout/{userId}',[ProfileController::class,'editAboutMe']);
 Route::post('UpdateUser',[ProfileController::class,'UpdateUser'])->name('UpdateUser');
 Route::get('admin',[adminController::class,'admin']);
-Route::post('add-media',[ProfileController::class,'profileMedia'])->name('ProfileMediaRoute');
+Route::post('add-media',[videoController::class,'profileMedia'])->name('ProfileMediaRoute');
 Route::post('add-image',[ProfileController::class,'profileImage'])->name('ProfileImageRoute');
 Route::post('add-post',[ProfileController::class,'ProfilePost'])->name('ProfilePostRoute');
 Route::get('deleteVideo/{id}',[ProfileController::class,'deleteVideo'])->name('deleteVideo');
@@ -57,10 +60,10 @@ Route::get('deletePost/{id}',[ProfileController::class,'deletePost']);
 Route::get('deleteVideoComment/{id}',[ProfileController::class,'deleteVideoComment']);
 Route::get('deleteImageComment/{id}',[ProfileController::class,'deleteImageComment']);
 Route::get('deletePostComment/{id}',[ProfileController::class,'deletePostComment']);
-Route::post('ProfileComment',[ProfileController::class,'ProfileComment'])->name('Profilecomment');
-Route::post('ProfileImageComment',[ProfileController::class,'ProfileImageComment'])->name('ProfileImageComment');
-Route::post('ProfilePostComment',[ProfileController::class,'ProfilePostComment'])->name('ProfilePostComment');
-Route::post('ProfilePictureRoute',[ProfileController::class,'ProfilePictureRoute'])->name('ProfilePictureRoute');
+Route::post('ProfileComment',[CommentsController::class,'ProfileComment'])->name('Profilecomment');
+Route::post('ProfileImageComment',[CommentsController::class,'ProfileImageComment'])->name('ProfileImageComment');
+Route::post('ProfilePostComment',[CommentsController::class,'ProfilePostComment'])->name('ProfilePostComment');
+Route::post('ProfilePictureRoute',[profilePictureController::class,'ProfilePictureRoute'])->name('ProfilePictureRoute');
 Route::post('add-movie',[adminController::class,'AdminMovies'])->name('AdminMovies');
 Route::post('add-trailler',[adminController::class,'AdminTraillers'])->name('AdminTrailler');
 Route::post('add-event',[adminController::class,'AdminEvents'])->name('AdminEvents');

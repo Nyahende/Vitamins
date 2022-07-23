@@ -18,9 +18,9 @@ class userProfileController extends Controller
     {
         
         $userDetails = User::where('name',$name)->get();
-        $userVideos = media::where('poster_name',$name)->get();
-        $userImages = images::where('poster_name',$name)->get();
-        $userPosts = post::where('poster_name',$name)->get();
+        $userVideos = media::where('poster_name',$name)->orderBy('id','desc')->get();
+        $userImages = images::where('poster_name',$name)->orderBy('id','desc')->get();
+        $userPosts = post::where('poster_name',$name)->orderBy('id','desc')->get();
         $userVideoComments = videoComment::orderBy('id','desc')->get();
         $userImageComments = imageComment::orderBy('id','desc')->get();
         $userPostComments = postComment::orderBy('id','desc')->get();

@@ -29,7 +29,7 @@ class membersController extends Controller
 
             <td> 
             '.'
-            <a href="#'.$item->id.'">'.''. $item->name.'</a> <br>
+            <a href="userprofile/'.$item->name.'">'.''. $item->name.'</a> <br>
             
             '.'</td>
             </tr>';

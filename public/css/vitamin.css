@@ -1,57 +1,64 @@
-.float-right:hover{
-    cursor:pointer;
+.float-right:hover {
+    cursor: pointer;
 }
-#direct-chat-name{
-    float:right;
+#direct-chat-name {
+    float: right;
 }
-#direct-chat-text-right{
-    padding:10px;
-    background-color:rgb(193, 193, 236);
-    margin-right:5px;
-    margin-top:10px;
+#direct-chat-text-right {
+    padding: 10px;
+    background-color: rgb(193, 193, 236);
+    margin-right: 5px;
+    margin-top: 10px;
     max-width: 300px;
-    border-radius:20px 0px 20px 20px;
-    float:right;
+    border-radius: 20px 0px 20px 20px;
+    float: right;
     clear: both;
-    border:1px solid black;
+    border: 1px solid black;
 }
-#direct-chat-text-left{
-    padding:10px;
-    background-color:rgb(168, 223, 202);
-    margin-left:5px;
-    margin-top:10px;
+#direct-chat-text-left {
+    padding: 10px;
+    background-color: rgb(168, 223, 202);
+    margin-left: 5px;
+    margin-top: 10px;
     max-width: 300px;
-    border-radius:0px 20px 20px 20px;
-    border:1px solid black;
+    border-radius: 0px 20px 20px 20px;
+    border: 1px solid black;
     clear: both;
 }
-.direct-chat-timestamp-float-right{
-    margin-left:10px;
-    font-size:12px;
-    color:gray;
+.direct-chat-timestamp-float-right {
+    margin-left: 10px;
+    font-size: 12px;
+    color: gray;
 }
-.direct-chat-timestamp-float-left{
-    margin-right:10px;
-    float:right;
+.direct-chat-timestamp-float-left {
+    margin-right: 10px;
+    float: right;
     clear: both;
-    font-size:12px;
-    color:gray;
+    font-size: 12px;
+    color: gray;
 }
 
-#checked-time{
-    background-color: green!important;
+#checked-time {
+    background-color: green !important;
     font-style: italic;
 }
-#checked-message{
+#checked-message {
     text-decoration: line-through;
 }
-#unchecked-time{
-    background-color: orangered!important;
+#unchecked-time {
+    background-color: orangered !important;
 }
-#delete-account:hover{
-background-color:black;
-color:white;
+#delete-account:hover {
+    background-color: black;
+    color: white;
 }
-.are-you-sure{
+.are-you-sure {
+    display: none;
+}
+#the-span {
+    background-color: black;
+    position: absolute;
+    max-height: 200px;
+    width: 200px;
     display:none;
 }

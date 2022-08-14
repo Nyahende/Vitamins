@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\food;
-use Share;
+use App\Models\newmessage;
+use Auth;
 
 class foodController extends Controller
 {
     public function food()
     {
-        $Wshare = Share::currentPage()->whatsapp();
-        $Tshare = Share::currentPage()->telegram();
-        $Fshare = Share::currentPage()->facebook();
+        $name = Auth::user()->name;
         $food = food::orderBy('id','desc')->get();
-        return view('vitamin.food',compact('food','Wshare','Tshare','Fshare'));
+        $shownewmessage = newmessage::get();
+        return view('vitamin.food',compact('food','name','shownewmessage'));
     }
 
 

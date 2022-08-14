@@ -36,6 +36,12 @@ $(document).ready(function(){
 
     });
 
+    $('#new-message-id').click(function(){
+
+        $('#the-span').slideToggle();
+
+    });
+
 
     $('#add-activity').click(function(){
 

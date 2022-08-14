@@ -28,9 +28,11 @@
 <script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
 <script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
 <script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+
 <!-- ChartJS -->
 
 <!-- AdminLTE for demo purposes -->
+<script src="{{asset('/js/formslide.js')}}"></script>
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
@@ -44,19 +46,7 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-    
-    </ul>
-
-  </nav>
+ @include('live.newmessage')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -219,6 +209,17 @@
                 }
 
             });  
+
+            $('#the-span').html("");
+            
+            $.each(response.newmessage, function(key, item){
+                {
+                $('#the-span').append('\
+                    <li> <a href="{{route('chat',$authusername)}}">'+item.sender_name+'</a></li>\
+                '); 
+                }
+
+            });
                                 
             }
             });
@@ -233,6 +234,7 @@ $('.the-chat-form').submit(function(e){
     $value = $('#message').val();
     $receiver = $('#receiver').val();
     $sender = $('#authusername').val();
+    var sender = $('#authusername').val();
     $.ajaxSetup({
         headers:{
             'X-CSRF-TOKEN':
@@ -240,22 +242,6 @@ $('.the-chat-form').submit(function(e){
         }
     });
 
-    function sendNotification()
-    {
-
-        var sender = $('#authusername').val();
-        var name = $('#receiver').val();
-        
-        $.ajax({
-            type: "post",
-            url: '{{route('main')}}',
-            data: {sender},
-            success: function(data)
-            {
-              console.log(data);
-            }
-        });
-    }
     
 
     $.ajax({
@@ -266,7 +252,7 @@ $('.the-chat-form').submit(function(e){
         {
             $('.the-chat-form')[0].reset();
             fetchtexts();
-            sendNotification();
+           
             
         }      
     }); 

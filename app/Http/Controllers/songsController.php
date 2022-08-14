@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\audio;
 use App\Models\musicVideo;
-use Share;
+use Auth;
+use App\Models\newmessage;
 
 class songsController extends Controller
 {
     public function songs()
     {
-        $Wshare = Share::currentPage()->whatsapp();
-        $Tshare = Share::currentPage()->telegram();
-        $Fshare = Share::currentPage()->facebook();
+        $name = Auth::user()->name;
         $songs = audio::orderBy('id','desc')->get();
         $musicVideo = musicVideo::orderBy('id','desc')->get();
-        return view('vitamin.songs',compact('songs','musicVideo','Wshare','Tshare','Fshare'));
+        $shownewmessage = newmessage::get();
+        return view('vitamin.songs',compact('songs','musicVideo','name','shownewmessage'));
     }
 
 

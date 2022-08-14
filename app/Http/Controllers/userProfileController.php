@@ -10,7 +10,7 @@ use App\Models\post;
 use App\Models\imageComment;
 use App\Models\videoComment;
 use App\Models\postComment;
-use Share;
+use App\Models\newmessage;
 
 class userProfileController extends Controller
 {
@@ -27,9 +27,10 @@ class userProfileController extends Controller
         $mediaCount = media::where('poster_name',$name)->count();
         $imageCount = images::where('poster_name',$name)->count();
         $postCount = post::where('poster_name',$name)->count();
+        $shownewmessage = newmessage::get();
 
         $totalPostCount = $mediaCount + $imageCount + $postCount;
         return view('vitamin.userprofile',compact('userDetails','userVideos','userVideoComments',
-        'userImages','userImageComments','userPosts','userPostComments','totalPostCount'));
+        'userImages','userImageComments','userPosts','userPostComments','totalPostCount','shownewmessage'));
     }
 }

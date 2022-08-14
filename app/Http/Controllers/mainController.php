@@ -10,6 +10,7 @@ use App\Models\podcast;
 use App\Models\user;
 use App\Models\activity;
 use Auth;
+use App\Models\newmessage;
 
 class mainController extends Controller
 {
@@ -25,7 +26,8 @@ class mainController extends Controller
         $name = Auth::user()->name;
         $activity = activity::where('User',$Authid)->get();
         $Authid = Auth::id();
-        return view('vitamin.main',compact('movies','songs','bookCount','usersCount','podcastCount','name','activity','Authid'));
+        $shownewmessage = newmessage::get();
+        return view('vitamin.main',compact('movies','shownewmessage','songs','bookCount','usersCount','podcastCount','name','activity','Authid'));
     }
     public function firstpage()
     {

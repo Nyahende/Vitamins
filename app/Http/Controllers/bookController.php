@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\book;
 use App\Models\bookReview;
 use Auth;
-use Share;
+use App\Models\newmessage;
 
 class bookController extends Controller
 {
@@ -18,8 +18,10 @@ class bookController extends Controller
         $Tshare = Share::currentPage()->telegram();
         $Fshare = Share::currentPage()->facebook();
         $book = book::orderBy('id','desc')->get();
+        $name = Auth::user()->name;
         $bookReviews = bookReview::orderBy('id','desc')->get();
-        return view('vitamin.book',compact('bookReviews','Wshare','Tshare','Fshare'),['book'=>$book]);
+        $shownewmessage = newmessage::get();
+        return view('vitamin.book',compact('bookReviews','shownewmessage','name'),['book'=>$book]);
     }
 
    public function addbook(Request $request)

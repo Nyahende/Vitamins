@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Auth;
+use App\Models\newmessage;
 
 class membersController extends Controller
 {
@@ -11,7 +13,9 @@ class membersController extends Controller
     {
 
         $users = User::all();
-        return view('vitamin.members',compact('users'));
+        $name = Auth::user()->name;
+        $shownewmessage = newmessage::get();
+        return view('vitamin.members',compact('users','name','shownewmessage'));
     }
 
     public function searchuser(Request $request)

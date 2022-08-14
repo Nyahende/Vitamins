@@ -11,7 +11,7 @@ use App\Models\post;
 use App\Models\videoComment;
 use App\Models\imageComment;
 use App\Models\postComment;
-use Share;
+use App\Models\newmessage;
 
 class profileController extends Controller
 {
@@ -28,12 +28,11 @@ class profileController extends Controller
         $mediaCount = media::where('poster_name',$username)->count();
         $imageCount = images::where('poster_name',$username)->count();
         $postCount = post::where('poster_name',$username)->count();
-        $Wshare = Share::currentPage()->whatsapp();
-        $Tshare = Share::currentPage()->telegram();
-        $Fshare = Share::currentPage()->facebook();
+        $name = Auth::user()->name;
+        $shownewmessage = newmessage::get();
 
         $totalPostCount = $mediaCount + $imageCount + $postCount;
-        return view('vitamin.profile',compact('username','userId','totalPostCount','Wshare','Tshare','Fshare'),['userMedia'=>$userMedia,'userImage'=>$userImage,
+        return view('vitamin.profile',compact('username','userId','totalPostCount','name','shownewmessage'),['userMedia'=>$userMedia,'userImage'=>$userImage,
         'userPost'=>$userPost,'videoComments'=>$videoComments,'imageComments'=>$imageComments,
         'postComments'=>$postComments]);
     }

@@ -161,12 +161,12 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong>Developed and Maintained by:  <a href="">michaelnyahende8@gmail.com</a>.</strong>
+    
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
+    This site has been active since <b>July 2022 </b>
     </div>
-  </footer>
+</footer>
 </div>
 
 

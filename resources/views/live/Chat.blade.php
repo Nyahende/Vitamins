@@ -105,9 +105,9 @@
                   </a>
                   
                   <!-- /.card-header -->
-                  <div class="card-body" style="width:100%;height:100%;">
+                  <div class="card-body" style="width:100%;height:100%">
                     <!-- Conversations are loaded here -->
-                    <div class="direct-chat-messages" style="width:100%;height:200px;">
+                    <div class="direct-chat-message" id="direct-chat-message">
                       
                       <!-- Message. Default to the left -->
                       <div class="direct-chat-msg">
@@ -153,27 +153,21 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
   <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Developed and Maintained by:  <a href="">michaelnyahende8@gmail.com</a>.</strong>
-    
-    <div class="float-right d-none d-sm-inline-block">
-    This site has been active since <b>July 2022 </b>
-    </div>
-</footer>
+  
 </div>
 
 
 
 <script>
 
-// $(document).ready(function(){
+$(document).ready(function(){
+
+
+  // SCROLLBAR TO THE BOTTOM
+
+  var chatHistory = document.getElementById('direct-chat-message');
+      chatHistory.scrollTop = chatHistory.scrollHeight;
 
     // FETCHING TEXTS
 
@@ -190,19 +184,19 @@
                                     
             var username = $('#receiver').val();
             var authusername = $('#authusername').val();
-            $('.direct-chat-messages').html("");
+            $('.direct-chat-message').html("");
             
             $.each(response.texts, function(key, item){
                 if(item.sender_name == authusername && item.receiver_name == username)
                 {
-                $('.direct-chat-messages').append('\
+                $('.direct-chat-message').append('\
                     <div id="direct-chat-text-right">'+item.text_body+'</div>\
                     <div class="direct-chat-timestamp-float-left">'+item.created_at+'</div>\
                 '); 
                 }
                 else if(item.sender_name == username && item.receiver_name == authusername)
                 {
-                $('.direct-chat-messages').append('\
+                $('.direct-chat-message').append('\
                     <div id="direct-chat-text-left">'+item.text_body+'</div>\
                     <div class="direct-chat-timestamp-float-right">'+item.created_at+'</div>\
                 '); 
@@ -224,7 +218,7 @@
             }
             });
         }
-    
+   
 
     // SENDING A TEXT MESSAGE
 
@@ -259,7 +253,7 @@ $('.the-chat-form').submit(function(e){
     
     
 });
-// });
+});
 
 </script>
 <!-- ./wrapper -->

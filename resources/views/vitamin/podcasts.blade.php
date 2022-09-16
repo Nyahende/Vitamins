@@ -72,25 +72,27 @@
             <div class="tab-content" id="custom-content-below-tabContent">
               <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
            
-                @foreach($podcast as $podcast)
+                @foreach($podcast as $podcasts)
 
-                    <div class="post" id="{{$podcast->id}}">
+                    <div class="post" id="{{$podcasts->id}}">
                       <div class="user-block" style="margin-left:-40px;">
                         <span class="username">
-                          <a href="#">{{$podcast->name}}</a>
+                          <a href="#">{{$podcasts->name}}</a>
                         </span>
                       </div>
                       <!-- /.user-block -->
                       <div class="row mb-3" style="width:100%;" >
                       <div class="video-div" style="width:100%;height:auto"> 
                       <audio controls class="audiplay" style="width:100%;">
-                      <source src="{{asset('/assets')}}/{{$podcast->file}}" type="audio/mpeg" style="width:100%;">Your audio format is not supported</audio>
+                      <source src="{{asset('/assets')}}/{{$podcasts->file}}" type="audio/mpeg" style="width:100%;">Your audio format is not supported</audio>
                       </div>
                       </div>
                      
                     </div>
 
                 @endforeach
+                 
+                {{ $podcast->links('pagination::bootstrap-4') }}
               
              
                 </div>

@@ -71,24 +71,26 @@
                       </table>
                     </div>
                   </div>
-                  @foreach($musicVideo as $musicVideo)
-                   <div class="post" id="{{$musicVideo->id}}">
+                  @foreach($musicVideo as $musicVideos)
+                   <div class="post" id="{{$musicVideos->id}}">
                       <div class="user-block" style="margin-left:-40px;">
                         <span class="username">
-                          <a href="#">{{$musicVideo->song_name}}</a>
+                          <a href="#">{{$musicVideos->song_name}}</a>
                         </span>
-                        <span class="description">{{$musicVideo->artist_name}}</span>
+                        <span class="description">{{$musicVideos->artist_name}}</span>
                       </div>
                       <!-- /.user-block -->
                       <div class="row mb-3" style="width:100%;" >
                       <div class="video-div" style="width:100%;height:auto"> 
                       <video controls class="video-controls" style="width:100%;height:auto">
-                       <source src="{{asset('/assets')}}/{{$musicVideo->file}}" type="video/mp4">Your audio format is not supported</video>
+                       <source src="{{asset('/assets')}}/{{$musicVideos->file}}" type="video/mp4">Your audio format is not supported</video>
                       </div>
                       </div>
                      
                     </div>
                   @endforeach
+
+                  {{ $musicVideo->links('pagination::bootstrap-4') }}
               </div>
               <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
              
@@ -100,24 +102,26 @@
                       </table>
                     </div>
                   </div>
-               @foreach($songs as $songs)
-                    <div class="post" id="{{$songs->id}}">
+               @foreach($songs as $song)
+                    <div class="post" id="{{$song->id}}">
                       <div class="user-block" style="margin-left:-40px;">
                         <span class="username">
-                          <a href="#">{{$songs->song_name}}</a>
+                          <a href="#">{{$song->song_name}}</a>
                         </span>
-                        <span class="description">{{$songs->artist_name}}</span>
+                        <span class="description">{{$song->artist_name}}</span>
                       </div>
                       <!-- /.user-block -->
                       <div class="row mb-3" style="width:100%;" >
                       <div class="video-div" style="width:100%;height:auto"> 
                       <audio controls class="audiplay" style="width:100%;">
-                      <source src="{{asset('/assets')}}/{{$songs->file}}" type="audio/mpeg" style="width:100%;">Your audio format is not supported</audio>
+                      <source src="{{asset('/assets')}}/{{$song->file}}" type="audio/mpeg" style="width:100%;">Your audio format is not supported</audio>
                       </div>
                       </div>
                      
                     </div>
                @endforeach
+
+               {{ $songs->links('pagination::bootstrap-4') }}
                
               </div>
               

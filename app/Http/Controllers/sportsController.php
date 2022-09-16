@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\sport;
-use App\Models\newmassage;
+use App\Models\newmessage;
 use Auth;
 
 class sportsController extends Controller
@@ -12,7 +12,7 @@ class sportsController extends Controller
     public function sports()
     {
         $name = Auth::user()->name;
-        $sport = sport::orderBy('id','desc')->get();
+        $sport = sport::orderBy('id','desc')->paginate(10);
         $shownewmessage = newmessage::get();
         return view('vitamin.sports',compact('sport','name','shownewmessage'));
     }

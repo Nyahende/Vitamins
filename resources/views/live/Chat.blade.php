@@ -105,7 +105,7 @@
                   </a>
                   
                   <!-- /.card-header -->
-                  <div class="card-body" style="width:100%;height:100%">
+                  <div class="card-body" style="width:100%;height:100%;">
                     <!-- Conversations are loaded here -->
                     <div class="direct-chat-message" id="direct-chat-message">
                       
@@ -163,11 +163,6 @@
 
 $(document).ready(function(){
 
-
-  // SCROLLBAR TO THE BOTTOM
-
-  var chatHistory = document.getElementById('direct-chat-message');
-      chatHistory.scrollTop = chatHistory.scrollHeight;
 
     // FETCHING TEXTS
 

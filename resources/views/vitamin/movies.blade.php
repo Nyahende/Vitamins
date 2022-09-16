@@ -68,21 +68,21 @@
                       </table>
                     </div>
                   </div>
-                        @foreach($traillers as $traillers)
+                        @foreach($traillers as $trailler)
 
                         <div class="post">
 
                               <div class="user-block" style="margin-left:-50px;">
                                   <span class="username">
-                                    <a href="">{{$traillers->name}}</a>
+                                    <a href="">{{$trailler->name}}</a>
                                   </span>
-                                  <span class="description"><b> Director</b>: {{$traillers->director}}</span>
-                                  <span class="description"><b>Staring</b>: {{$traillers->staring}}</span>
+                                  <span class="description"><b> Director</b>: {{$trailler->director}}</span>
+                                  <span class="description"><b>Staring</b>: {{$trailler->staring}}</span>
                               </div>
                                 <!-- /.user-block -->
                                 <div class="video-div" style="width:100%;height:auto;"> 
                                 <video controls class="video-controls" style="width:100%;height:auto;">
-                                <source src="{{asset('/assets')}}/{{$traillers->file}}" type="video/mp4" style="width:100%;height:auto;">
+                                <source src="{{asset('/assets')}}/{{$trailler->file}}" type="video/mp4" style="width:100%;height:auto;">
                                 Your audio format is not supported</video>
 
                                 </div>
@@ -90,6 +90,8 @@
                         </div>
 
                         @endforeach
+
+                        {{ $traillers->links('pagination::bootstrap-4') }}
 
                     </div>
                   <!-- /.tab-pane -->
@@ -103,7 +105,7 @@
                       </table>
                     </div>
                   </div>
-                  @foreach($movies as $movies)
+                  @foreach($movies as $movie)
 
 
                       <div class="post">
@@ -111,21 +113,23 @@
 
                             <div class="user-block" style="margin-left:-50px;">
                                 <span class="username">
-                                  <a href="">{{$movies->name}}</a>
+                                  <a href="">{{$movie->name}}</a>
                                 </span>
-                                <span class="description"><b> Director</b>: {{$movies->director}}</span>
-                                <span class="description"><b> Staring</b>: {{$movies->staring}}</span>
+                                <span class="description"><b> Director</b>: {{$movie->director}}</span>
+                                <span class="description"><b> Staring</b>: {{$movie->staring}}</span>
                             </div>
                               <!-- /.user-block -->
                               <div class="video-div" style="width:100%;height:auto;"> 
                               <video controls class="video-controls" style="width:100%;height:auto;">
-                              <source src="{{asset('/assets')}}/{{$movies->file}}" type="video/mp4" style="width:100%;height:auto;">
+                              <source src="{{asset('/assets')}}/{{$movie->file}}" type="video/mp4" style="width:100%;height:auto;">
                               Your audio format is not supported</video>
 
                               </div>
                             
                         </div>
-                        @endforeach
+                  @endforeach
+
+                  {{ $movies->links('pagination::bootstrap-4') }}
 
                     </div>
 
@@ -140,26 +144,28 @@
                       </table>
                     </div>
                   </div>
-                  @foreach($events as $events)
+                  @foreach($events as $event)
 
                       <div class="post">
 
                           <div class="user-block" style="margin-left:-50px;">
                               <span class="username">
-                                <a href="">{{$events->name}}</a>
+                                <a href="">{{$event->name}}</a>
                               </span>
-                              <span class="description"><b> Event Name</b>: {{$events->name}}</span>
-                              <span class="description"><b> Host</b>: {{$events->host}}</span>
+                              <span class="description"><b> Event Name</b>: {{$event->name}}</span>
+                              <span class="description"><b> Host</b>: {{$event->host}}</span>
                           </div>
                             <!-- /.user-block -->
                             <div class="video-div" style="width:100%;height:auto;"> 
                             <video controls class="video-controls" style="width:100%;height:auto;">
-                            <source src="{{asset('/assets')}}/{{$events->file}}" type="video/mp4" style="width:100%;height:auto;">
+                            <source src="{{asset('/assets')}}/{{$event->file}}" type="video/mp4" style="width:100%;height:auto;">
                             Your audio format is not supported</video>
                             </div>
                           
                       </div>
                   @endforeach
+
+                  {{ $events->links('pagination::bootstrap-4') }}
                     
                   </div>
                

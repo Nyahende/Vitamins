@@ -64,27 +64,26 @@
                       </table>
                     </div>
                   </div>
-              @foreach($food as $food)
+              @foreach($food as $foods)
 
               <div class="post">
                     <div class="user-block" style="margin-left:-40px;">
                       <span class="username">
-                        <a href="#">{{$food->name}}</a>
+                        <a href="#">{{$foods->name}}</a>
                       </span>
                       
                     </div>
                     <!-- /.user-block -->
                     <div class="row mb-3" style="width:100%;" >
                       <video controls class="video-controls" style="width:100%;height:auto;">
-                      <source src="{{asset('/assets')}}/{{$food->file}}" type="video/mp4" style="width:100%;height:auto;">
+                      <source src="{{asset('/assets')}}/{{$foods->file}}" type="video/mp4" style="width:100%;height:auto;">
                       Your audio format is not supported</video>
                     </div>
-                    <!-- /.row -->
-
-                    
 
                   </div>
                 @endforeach
+
+                {{ $food->links('pagination::bootstrap-4') }}
               </div>
               
               

@@ -13,8 +13,8 @@ class songsController extends Controller
     public function songs()
     {
         $name = Auth::user()->name;
-        $songs = audio::orderBy('id','desc')->get();
-        $musicVideo = musicVideo::orderBy('id','desc')->get();
+        $songs = audio::orderBy('id','desc')->paginate(10);
+        $musicVideo = musicVideo::orderBy('id','desc')->paginate(10);
         $shownewmessage = newmessage::get();
         return view('vitamin.songs',compact('songs','musicVideo','name','shownewmessage'));
     }

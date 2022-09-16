@@ -94,19 +94,20 @@
                     <tr>
                       <td>
                         @if($item->profile_picture)
-                          <img src="{{asset('/assets')}}/{{$item->profile_picture}}"  style="width:80px;height:80px;border-radius:10px;" alt="User Image">
+                          <img src="{{asset('/assets')}}/{{$item->profile_picture}}"  style="width:80px;height:80px;border-radius:50%;" alt="User Image">
                         @else  
-                        <img src="{{asset('/dist/img/user.jpg')}}"  style="width:80px;height:80px;border-radius:10px;" alt="User Image">
+                        <img src="{{asset('/dist/img/user.jpg')}}"  style="width:80px;height:80px;border-radius:50%;" alt="User Image">
                         @endif
                           <div class="info">
                           <a href="{{'userprofile/'.$item->name}}" class="d-block">{{$item->name}}</a>
                           </div>
+                        
                       </td>
                     </tr>
                   </div>
                   @endif
                   @endforeach
-                 
+                  {{ $users->links('pagination::bootstrap-4') }}
                   </tbody>
                 </table>
                 <!-- /.table -->
@@ -177,5 +178,6 @@
             });
         });
 </script>
+
 </body>
 </html>

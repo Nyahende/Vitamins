@@ -6,35 +6,6 @@
     <title>Document</title>
 </head>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
-  <link rel="stylesheet" href="{{asset('/css/vitamin.css')}}">
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-  <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-
-<!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
-
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
-<script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
-
-<!-- ChartJS -->
-
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
 <!-- <script src="{{asset('js/formslide.js')}}"></script> -->
 <body>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -66,8 +37,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="{{route('main')}}" class="nav-link active">
+          <li class="nav-item ">
+            <a href="{{route('main')}}" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home

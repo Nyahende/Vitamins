@@ -61,19 +61,19 @@
                       </table>
                     </div>
                   </div>
-             @foreach($history as $history)
+             @foreach($history as $histor)
 
               <div class="post">
                       <div class="user-block" style="margin-left:-40px;">
                         <span class="username">
-                          <a href="#">{{$history->name}}</a>
+                          <a href="#">{{$histor->name}}</a>
                         </span>
                         
                       </div>
                       <!-- /.user-block -->
                       <div class="row mb-3" style="width:100%;" >
                       <video controls class="video-controls" style="width:100%;height:auto;">
-                       <source src="{{asset('/assets')}}/{{$history->file}}" type="video/mp4" style="width:100%;height:auto;">
+                       <source src="{{asset('/assets')}}/{{$histor->file}}" type="video/mp4" style="width:100%;height:auto;">
                        Your audio format is not supported</video>
                       </div>
                     
@@ -81,6 +81,8 @@
               </div>
 
               @endforeach
+
+              {{ $history->links('pagination::bootstrap-4') }}
               </div>
               
               

@@ -12,7 +12,7 @@ class historyController extends Controller
     public function history()
     {
         $name = Auth::user()->name;
-        $history = history::orderBy('id','desc')->get();
+        $history = history::orderBy('id','desc')->paginate(10);
         $shownewmessage = newmessage::get();
         return view('vitamin.history',compact('history','name','shownewmessage'));
     }

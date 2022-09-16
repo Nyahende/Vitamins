@@ -12,7 +12,7 @@ class foodController extends Controller
     public function food()
     {
         $name = Auth::user()->name;
-        $food = food::orderBy('id','desc')->get();
+        $food = food::orderBy('id','desc')->paginate(10);
         $shownewmessage = newmessage::get();
         return view('vitamin.food',compact('food','name','shownewmessage'));
     }

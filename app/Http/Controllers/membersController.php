@@ -12,7 +12,7 @@ class membersController extends Controller
     public function members()
     {
 
-        $users = User::all();
+        $users = User::paginate(20);
         $name = Auth::user()->name;
         $shownewmessage = newmessage::get();
         return view('vitamin.members',compact('users','name','shownewmessage'));

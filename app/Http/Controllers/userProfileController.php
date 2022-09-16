@@ -11,6 +11,7 @@ use App\Models\imageComment;
 use App\Models\videoComment;
 use App\Models\postComment;
 use App\Models\newmessage;
+use Auth;
 
 class userProfileController extends Controller
 {
@@ -28,9 +29,10 @@ class userProfileController extends Controller
         $imageCount = images::where('poster_name',$name)->count();
         $postCount = post::where('poster_name',$name)->count();
         $shownewmessage = newmessage::get();
+        $name = Auth::user()->name;
 
         $totalPostCount = $mediaCount + $imageCount + $postCount;
-        return view('vitamin.userprofile',compact('userDetails','userVideos','userVideoComments',
+        return view('vitamin.userprofile',compact('name','userDetails','userVideos','userVideoComments',
         'userImages','userImageComments','userPosts','userPostComments','totalPostCount','shownewmessage'));
     }
 }

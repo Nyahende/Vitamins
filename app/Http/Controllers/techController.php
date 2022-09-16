@@ -12,7 +12,7 @@ class techController extends Controller
     public function technology()
     {
         $name = Auth::user()->name;
-        $tech = tech::orderBy('id','desc')->get();
+        $tech = tech::orderBy('id','desc')->paginate(10);
         $shownewmessage = newmessage::get();
     return view('vitamin.technology',compact('tech','name','shownewmessage'));
     }

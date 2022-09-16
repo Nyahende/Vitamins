@@ -69,26 +69,28 @@
             <div class="active tab-pane" id="video">
 
 
-                    @foreach($book as $book)
-                    <div class="post" id="{{$book->id}}">
+                    @foreach($book as $books)
+                    <div class="post" id="{{$books->id}}">
                       <div class="user-block">
                         <span class="username">
-                          <a href="{{route('userprofilename',[$book->name])}}">{{$book->name}}</a>
+                          <a href="{{route('userprofilename',[$books->name])}}">{{$books->name}}</a>
                         </span>
-                        <span class="description">{{$book->author}}</span>
+                        <span class="description">{{$books->author}}</span>
                       </div>
                       <!-- /.user-block -->
                       <div class="cover-div" style="width:100%;height:auto;"> 
-                       <img src="{{asset('/assets')}}/{{$book->bookCover}}" style="width:100%;height:auto;">
+                       <img src="{{asset('/assets')}}/{{$books->bookCover}}" style="width:100%;height:auto;">
                       </div>
                       <p>
 
-                      <button type="button" class="btn btn-success" style="margin:10px;"><a href="{{asset('/assets')}}/{{$book->file}}" style="color:white;"> Read The Book</a></button>
+                      <button type="button" class="btn btn-success" style="margin:10px;"><a href="{{asset('/assets')}}/{{$books->file}}" style="color:white;"> Download</a></button>
                       
                       </p>
                          
                     </div>
                     @endforeach
+
+                    {{ $book->links('pagination::bootstrap-4') }}
 
                     </div>
 

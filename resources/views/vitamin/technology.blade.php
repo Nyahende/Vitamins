@@ -62,26 +62,26 @@
                       </table>
                     </div>
                   </div>
-               @foreach($tech as $tech)
+               @foreach($tech as $techs)
+
                  <div class="post">
                       <div class="user-block" style="margin-left:-40px;">
                         <span class="username">
-                          <a href="#">{{$tech->name}}</a>
+                          <a href="#">{{$techs->name}}</a>
                         </span>
                       </div>
                       <!-- /.user-block -->
                       <div class="row mb-3" style="width:100%;" >
                       <video controls class="video-controls" style="width:100%;height:auto;">
-                       <source src="{{asset('/assets')}}/{{$tech->file}}" type="video/mp4" style="width:100%;height:auto;">
+                       <source src="{{asset('/assets')}}/{{$techs->file}}" type="video/mp4" style="width:100%;height:auto;">
                        Your audio format is not supported</video>
                       </div>
                       <!-- /.row -->
-
-                   
-
                   </div>
 
-              @endforeach
+               @endforeach
+
+               {{ $tech->links('pagination::bootstrap-4') }}
                   
               </div>
               

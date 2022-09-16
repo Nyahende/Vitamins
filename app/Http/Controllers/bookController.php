@@ -14,10 +14,8 @@ class bookController extends Controller
     public function book()
     {
 
-        $Wshare = Share::currentPage()->whatsapp();
-        $Tshare = Share::currentPage()->telegram();
-        $Fshare = Share::currentPage()->facebook();
-        $book = book::orderBy('id','desc')->get();
+       
+        $book = book::orderBy('id','desc')->paginate(10);
         $name = Auth::user()->name;
         $bookReviews = bookReview::orderBy('id','desc')->get();
         $shownewmessage = newmessage::get();

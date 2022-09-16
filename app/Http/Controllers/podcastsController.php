@@ -13,7 +13,7 @@ class podcastsController extends Controller
     {
         $name = Auth::user()->name;
 
-        $podcast = podcast::orderBy('id','desc')->get();
+        $podcast = podcast::orderBy('id','desc')->paginate(10);
         $shownewmessage = newmessage::get();
         return view('vitamin.podcasts',compact('podcast','name','shownewmessage'));
     }

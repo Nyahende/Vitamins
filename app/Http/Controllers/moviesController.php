@@ -14,9 +14,9 @@ class moviesController extends Controller
     public function movies()
     {
         $name = Auth::user()->name;
-        $movies = movie::orderBy('id','desc')->get();
-        $traillers = trailler::orderBy('id','desc')->get();
-        $events = event::orderBy('id','desc')->get();
+        $movies = movie::orderBy('id','desc')->paginate(10);
+        $traillers = trailler::orderBy('id','desc')->paginate(10);
+        $events = event::orderBy('id','desc')->paginate(10);
         $shownewmessage = newmessage::get();
         return view('vitamin.movies',compact('movies','traillers','events','name','shownewmessage'));
     }

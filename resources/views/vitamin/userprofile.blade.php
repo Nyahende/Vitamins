@@ -64,7 +64,11 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+    @if(Session::get('followsuccess'))
+      <div>
+          <h2 style="color:blue;font-weight:lighter;text-align:center">{{Session::get('followsuccess')}}</h2>
+      </div>
+    @endif
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -90,9 +94,10 @@
                 <h3 class="profile-username text-center">{{$userDetails->name}}</h3>
 
                 <p class="text-muted text-center">{{$userDetails->occupation}}</p>
-                <p class="text-muted text-center">{{$userDetails->status}}</p>
-
+                <p class="text-muted text-center">{{$userDetails->status}}</p> <br>
+ 
                 <ul class="list-group list-group-unbordered mb-3">
+                
                   <li class="list-group-item">
                    <a href="{{route('chat',[$userDetails->name])}}"> <b>Inbox</b></a> 
                   </li>
